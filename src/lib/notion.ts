@@ -92,9 +92,39 @@ export async function getGodsData(): Promise<GodData[]> {
       });
     }
 
+    if (gods.length === 0) {
+      throw new Error("No data found in Notion");
+    }
+
     return gods;
   } catch (error) {
     console.error("Error fetching Notion data:", error);
-    return [];
+    // 為了不讓版面變成空白，當 Notion 無法連線時，提供一組預設展示用的卡片資料
+    return [
+      { 
+        id: "mock1", 
+        name: "天上聖母", 
+        title: "航海與守護的慈悲象徵",
+        desc: "考證媽祖信仰於沿海聚落的傳承與流變，從宋代海神信仰至當代巡香儀式。",
+        tags: ["海神", "慈悲", "巡香"],
+        image: "https://images.unsplash.com/photo-1549422003-4c9f1bd171be?q=80&w=600&auto=format&fit=crop"
+      },
+      { 
+        id: "mock2", 
+        name: "關聖帝君", 
+        title: "忠義雙全的武財神",
+        desc: "探討從三國將領至民間信仰的造神軌跡，結合商業守護與忠義精神的演變。",
+        tags: ["武財神", "忠義", "商賈"],
+        image: "https://images.unsplash.com/photo-1590059302636-9e900c1ceb18?q=80&w=600&auto=format&fit=crop"
+      },
+      { 
+        id: "mock3", 
+        name: "福德正神", 
+        title: "最親民的土地守護者",
+        desc: "解析農業社會中與土地共生的祭祀文化，聚落邊界的守護神與財富象徵。",
+        tags: ["土地", "財庫", "聚落"],
+        image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c836?q=80&w=600&auto=format&fit=crop"
+      }
+    ];
   }
 }

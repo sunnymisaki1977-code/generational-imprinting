@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-xuan: #121212;
-  --color-jiang: #3A1724;
-  --color-amber: #D4AF37;
-  --color-bone: #F4F0EB;
+  --color-rice: #F7F5F0;
+  --color-ink: #171717;
+  --color-vermilion: #C82828;
+  --color-amber: #D4AF37; /* Kept for legacy highlights if needed */
 
   --font-serif: var(--font-noto-serif-tc), serif;
   --font-sans: var(--font-noto-sans-tc), sans-serif;
 }
 
 :root {
-  --background: var(--color-xuan);
-  --foreground: var(--color-bone);
+  --background: var(--color-rice);
+  --foreground: var(--color-ink);
 }
 
 body {
@@ -23,19 +23,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hide scrollbar for cleaner scrollytelling experience */
+/* Scrollbar styling for light theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-xuan);
+  background: var(--color-rice);
+  border-left: 1px solid rgba(23, 23, 23, 0.1); /* Subtle ink line */
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-jiang);
+  background: var(--color-ink);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-amber);
+  background: var(--color-vermilion);
 }
 
 @utility writing-vertical-rl {

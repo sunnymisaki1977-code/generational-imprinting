@@ -50,20 +50,20 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   }, { scope: container, dependencies: [gods] });
 
   return (
-    <div ref={container} className="min-h-screen flex items-center justify-center py-24 px-4 md:px-10 bg-xuan relative">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber/30 to-transparent opacity-50"></div>
+    <div ref={container} className="min-h-screen flex items-center justify-center py-24 px-4 md:px-10 bg-rice relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-ink/10"></div>
       
       <div className="max-w-7xl w-full z-10">
         <div className="flex flex-col items-center mb-16">
-          <span className="text-amber/50 font-sans tracking-[0.3em] text-sm mb-3 uppercase">Encyclopedia</span>
-          <h2 ref={titleRef} className="text-4xl md:text-5xl font-serif text-amber text-center tracking-widest opacity-0">
+          <span className="text-vermilion font-sans tracking-[0.3em] text-sm mb-3 uppercase">Encyclopedia</span>
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-serif text-ink text-center tracking-widest opacity-0">
             【諸神・紀略】
           </h2>
         </div>
         
         {gods.length === 0 ? (
-          <div className="text-center text-bone/50 py-20 font-sans tracking-widest">
-            正在從 Notion 載入文獻資料... <br/>(請確認已設定環境變數 NOTION_TOKEN)
+          <div className="text-center text-ink/50 py-20 font-sans tracking-widest">
+            正在從 Notion 載入文獻資料...
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12">
@@ -71,57 +71,67 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
               <div 
                 key={god.id} 
                 ref={(el) => { cardsRef.current[i] = el; }}
-                className="group relative rounded-2xl transition-all duration-700 opacity-0 transform-gpu perspective-1000 flex flex-col h-full min-h-[500px]"
+                className="group relative transition-all duration-700 opacity-0 transform-gpu flex flex-col h-full min-h-[500px]"
               >
-                {/* Outer Golden Glow Border */}
-                <div className="absolute -inset-[1px] bg-gradient-to-b from-amber/40 via-jiang/20 to-transparent rounded-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                {/* 墨黑粗細雙框之外框 (偽裝成雙線) */}
+                <div className="absolute -inset-1 border border-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 
-                {/* Card Content Container */}
-                <div className="relative bg-xuan/90 backdrop-blur-xl rounded-2xl p-6 flex flex-col h-full overflow-hidden border border-xuan shadow-2xl group-hover:shadow-[0_10px_40px_-10px_rgba(212,175,55,0.15)] transition-shadow duration-700">
+                {/* 卡牌主體 */}
+                <div className="relative bg-rice p-5 md:p-6 flex flex-col h-full overflow-hidden border-2 border-ink group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_#171717] transition-all duration-300">
                   
-                  {/* Decorative corner accents */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-amber/0 group-hover:border-amber/50 rounded-tl-2xl transition-colors duration-700"></div>
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-amber/0 group-hover:border-amber/50 rounded-br-2xl transition-colors duration-700"></div>
+                  {/* 極細朱紅印章 (右上角) */}
+                  <div className="absolute top-6 right-6 w-8 h-8 border border-vermilion text-vermilion flex items-center justify-center text-[10px] font-serif writing-vertical-rl z-20 opacity-80 select-none">
+                    典藏
+                  </div>
 
-                  {/* Image Section */}
-                  <div className="relative w-full aspect-[4/5] bg-jiang/10 mb-6 rounded-xl overflow-hidden shrink-0">
-                    <div className="absolute inset-0 bg-jiang/30 group-hover:bg-transparent transition-colors duration-700 z-10 mix-blend-multiply"></div>
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-50 group-hover:opacity-80 group-hover:scale-110 group-hover:mix-blend-normal transition-all duration-[1000ms] ease-out"
-                      style={{ backgroundImage: `url("${god.image}")` }}
-                    ></div>
+                  {/* 影像與左上直書 */}
+                  <div className="relative w-full aspect-[4/5] mb-6 overflow-hidden shrink-0 border border-ink p-1.5 bg-rice">
+                    <div className="relative w-full h-full overflow-hidden border border-ink/20">
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-[1000ms] ease-out group-hover:scale-105"
+                        style={{ backgroundImage: `url("${god.image}")` }}
+                      ></div>
+                      
+                      {/* 左上方直書詩句 */}
+                      <div className="absolute top-2 left-2 z-20 bg-rice/95 px-1.5 py-3 border border-ink/30 shadow-sm">
+                        <span className="writing-vertical-rl text-[11px] font-serif text-ink tracking-[0.3em] leading-loose">
+                          神威顯赫
+                        </span>
+                      </div>
+                    </div>
                     
-                    {/* Floating Tags */}
-                    <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pr-4">
+                    {/* Tags (朱紅底白字) */}
+                    <div className="absolute bottom-4 right-4 z-20 flex flex-wrap gap-1.5 justify-end">
                       {god.tags.map((tag, idx) => (
-                        <span key={idx} className="text-[10px] md:text-xs font-sans tracking-widest text-bone bg-xuan/60 backdrop-blur-md px-3 py-1 rounded-full border border-bone/10 shadow-sm translate-x-[-10px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500" style={{ transitionDelay: `${idx * 100}ms`}}>
+                        <span key={idx} className="text-[10px] font-sans tracking-widest text-white bg-vermilion px-2 py-1 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Text Content */}
+                  {/* 內文排版 */}
                   <div className="flex flex-col flex-1">
-                    <h3 className="text-3xl font-serif text-bone mb-1 group-hover:text-amber transition-colors duration-500 tracking-wider">
+                    <h3 className="text-3xl font-serif text-ink mb-2 tracking-wider">
                       {god.name}
                     </h3>
-                    <h4 className="text-sm font-sans text-amber/80 mb-4 tracking-widest leading-relaxed">
+                    <h4 className="text-sm font-sans text-ink/60 mb-4 tracking-widest leading-relaxed">
                       {god.title}
                     </h4>
-                    <div className="w-12 h-px bg-jiang/50 mb-4 group-hover:w-full group-hover:bg-amber/30 transition-all duration-700 shrink-0"></div>
                     
-                    <p className="text-bone/70 font-sans text-sm md:text-base leading-relaxed mb-8 flex-1 overflow-hidden line-clamp-4">
+                    <div className="w-full h-px bg-ink/20 mb-4 shrink-0 relative overflow-hidden">
+                      <div className="absolute left-0 top-0 h-full w-0 bg-vermilion group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                    
+                    <p className="text-ink/80 font-sans text-sm md:text-base leading-loose mb-8 flex-1 overflow-hidden line-clamp-4">
                       {god.desc}
                     </p>
                     
-                    {/* Action Button */}
-                    <div className="mt-auto pt-4 border-t border-bone/5 group-hover:border-amber/20 transition-colors duration-500 shrink-0">
-                      <button className="flex items-center justify-between w-full text-amber/60 text-sm font-sans tracking-[0.2em] group-hover:text-amber transition-colors duration-300">
+                    {/* 按鈕 */}
+                    <div className="mt-auto pt-4 border-t border-ink/20 shrink-0">
+                      <button className="flex items-center justify-between w-full text-vermilion text-sm font-sans tracking-[0.2em] group-hover:tracking-[0.3em] transition-all duration-300">
                         <span>研閱列傳</span>
-                        <span className="w-8 h-8 rounded-full border border-amber/30 flex items-center justify-center group-hover:bg-amber/10 group-hover:border-amber group-hover:translate-x-1 transition-all duration-300">
-                          →
-                        </span>
+                        <span className="font-serif">→</span>
                       </button>
                     </div>
                   </div>
