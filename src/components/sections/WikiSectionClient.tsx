@@ -95,7 +95,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
                       {/* 左上方直書詩句 */}
                       <div className="absolute top-2 left-2 z-20 bg-rice/95 px-1.5 py-3 border border-ink/30 shadow-sm">
                         <span className="writing-vertical-rl text-[11px] font-serif text-ink tracking-[0.3em] leading-loose">
-                          神威顯赫
+                          {god.poem || "神威顯赫"}
                         </span>
                       </div>
                     </div>

@@ -11,6 +11,7 @@ export interface GodData {
   desc: string;
   tags: string[];
   image: string;
+  poem?: string;
 }
 
 export async function getGodsData(): Promise<GodData[]> {
@@ -50,15 +51,40 @@ export async function getGodsData(): Promise<GodData[]> {
       let title = "";
       let desc = "";
       let tags: string[] = [];
+      let poem = "";
+      let isPromptSection = false;
 
       for (const block of blocks) {
         if (!('type' in block)) continue;
 
-        // 解析副標題 (通常是 Heading 3 或 Heading 2)
-        if (!title && (block.type === 'heading_2' || block.type === 'heading_3')) {
+        // 處理標題 (Heading 2 或 Heading 3)
+        if (block.type === 'heading_2' || block.type === 'heading_3') {
           const headingObj = (block as any)[block.type];
           if (headingObj?.rich_text && Array.isArray(headingObj.rich_text) && headingObj.rich_text.length > 0) {
-            title = (headingObj.rich_text as any[]).map(t => t.plain_text).join("");
+            const headingText = (headingObj.rich_text as any[]).map(t => t.plain_text).join("");
+            
+            // 如果遇到 "生成圖像", 則標記並跳過後續所有內容
+            if (headingText.includes("生成圖像")) {
+              isPromptSection = true;
+              continue;
+            }
+            
+            // 如果還沒設定過副標題，則將第一個標題設為副標題
+            if (!title) {
+              title = headingText;
+            }
+          }
+          continue;
+        }
+
+        // 如果進入了生成圖像區塊，直接跳過 (包含英文提示詞)
+        if (isPromptSection) continue;
+
+        // 處理引言 (Quote) - 作為卡片左上角的詩句
+        if (block.type === 'quote') {
+          const textArr = (block as any).quote?.rich_text;
+          if (textArr && Array.isArray(textArr) && textArr.length > 0) {
+            poem = (textArr as any[]).map(t => t.plain_text).join("");
           }
           continue;
         }
@@ -74,9 +100,8 @@ export async function getGodsData(): Promise<GodData[]> {
           if (text.includes("標籤:") || text.includes("#")) {
             const rawTags = text.replace("標籤:", "").split("#").map(t => t.trim()).filter(t => t);
             tags = rawTags;
-          } 
-          // 否則如果是「生成圖像 Prom」之類的系統文字就略過
-          else if (!text.includes("生成圖像")) {
+          } else {
+            // 一般內文描述
             desc += desc ? `\n${text}` : text;
           }
         }
@@ -89,6 +114,7 @@ export async function getGodsData(): Promise<GodData[]> {
         desc: desc || "尚無文獻資料。",
         tags: tags.length > 0 ? tags : ["信仰", "傳承"],
         image: `/Gods%20card/${name}.png`, // 自動對應 public 目錄下的圖片，使用 %20 避免空白造成載入失敗
+        poem: poem || "神威顯赫",
       });
     }
 
