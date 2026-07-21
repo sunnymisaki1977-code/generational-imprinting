@@ -88,7 +88,7 @@ export async function getGodsData(): Promise<GodData[]> {
         title: title || "神明列傳",
         desc: desc || "尚無文獻資料。",
         tags: tags.length > 0 ? tags : ["信仰", "傳承"],
-        image: `/Gods card/${name}.png`, // 自動對應 public 目錄下的圖片
+        image: `/Gods%20card/${name}.png`, // 自動對應 public 目錄下的圖片，使用 %20 避免空白造成載入失敗
       });
     }
 
@@ -103,27 +103,27 @@ export async function getGodsData(): Promise<GodData[]> {
     return [
       { 
         id: "mock1", 
-        name: "天上聖母", 
-        title: "航海與守護的慈悲象徵",
-        desc: "考證媽祖信仰於沿海聚落的傳承與流變，從宋代海神信仰至當代巡香儀式。",
-        tags: ["海神", "慈悲", "巡香"],
-        image: "https://images.unsplash.com/photo-1549422003-4c9f1bd171be?q=80&w=600&auto=format&fit=crop"
-      },
-      { 
-        id: "mock2", 
         name: "關聖帝君", 
         title: "忠義雙全的武財神",
         desc: "探討從三國將領至民間信仰的造神軌跡，結合商業守護與忠義精神的演變。",
         tags: ["武財神", "忠義", "商賈"],
-        image: "https://images.unsplash.com/photo-1590059302636-9e900c1ceb18?q=80&w=600&auto=format&fit=crop"
+        image: "/Gods%20card/關聖帝君.png"
+      },
+      { 
+        id: "mock2", 
+        name: "玉皇大帝", 
+        title: "天界至尊的權威信仰",
+        desc: "解析民間對於天界最高主宰的崇拜，以及其在道教與民間信仰中的融合與演變。",
+        tags: ["天公", "至尊", "主宰"],
+        image: "/Gods%20card/玉皇大帝.png"
       },
       { 
         id: "mock3", 
-        name: "福德正神", 
-        title: "最親民的土地守護者",
-        desc: "解析農業社會中與土地共生的祭祀文化，聚落邊界的守護神與財富象徵。",
-        tags: ["土地", "財庫", "聚落"],
-        image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c836?q=80&w=600&auto=format&fit=crop"
+        name: "五殿閻羅王", 
+        title: "掌管生死的冥界判官",
+        desc: "深入探討十殿閻羅的民間傳說，以及其勸人向善、善惡分明的宗教意義。",
+        tags: ["冥界", "審判", "輪迴"],
+        image: "/Gods%20card/五殿閻羅王.png"
       }
     ];
   }

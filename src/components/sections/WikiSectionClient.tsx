@@ -71,21 +71,21 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
               <div 
                 key={god.id} 
                 ref={(el) => { cardsRef.current[i] = el; }}
-                className="group relative transition-all duration-700 opacity-0 transform-gpu flex flex-col h-full min-h-[500px]"
+                className="group relative transition-all duration-700 opacity-0 transform-gpu flex flex-col h-full"
               >
                 {/* 墨黑粗細雙框之外框 (偽裝成雙線) */}
                 <div className="absolute -inset-1 border border-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 
-                {/* 卡牌主體 */}
-                <div className="relative bg-rice p-5 md:p-6 flex flex-col h-full overflow-hidden border-2 border-ink group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_#171717] transition-all duration-300">
+                {/* 卡牌主體 - 移除 overflow-hidden 避免內文被裁切 */}
+                <div className="relative bg-rice p-5 md:p-6 flex flex-col h-full border-2 border-ink group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_#171717] transition-all duration-300">
                   
                   {/* 極細朱紅印章 (右上角) */}
                   <div className="absolute top-6 right-6 w-8 h-8 border border-vermilion text-vermilion flex items-center justify-center text-[10px] font-serif writing-vertical-rl z-20 opacity-80 select-none">
                     典藏
                   </div>
 
-                  {/* 影像與左上直書 */}
-                  <div className="relative w-full aspect-[4/5] mb-6 overflow-hidden shrink-0 border border-ink p-1.5 bg-rice">
+                  {/* 影像與左上直書 - 調整比例為 1:1 避免在小螢幕上過高擠壓文字 */}
+                  <div className="relative w-full aspect-square mb-6 shrink-0 border border-ink p-1.5 bg-rice">
                     <div className="relative w-full h-full overflow-hidden border border-ink/20">
                       <div 
                         className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-[1000ms] ease-out group-hover:scale-105"
@@ -115,7 +115,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
                     <h3 className="text-3xl font-serif text-ink mb-2 tracking-wider">
                       {god.name}
                     </h3>
-                    <h4 className="text-sm font-sans text-ink/60 mb-4 tracking-widest leading-relaxed">
+                    <h4 className="text-sm font-sans text-ink/60 mb-4 tracking-widest leading-relaxed line-clamp-1">
                       {god.title}
                     </h4>
                     
@@ -123,7 +123,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
                       <div className="absolute left-0 top-0 h-full w-0 bg-vermilion group-hover:w-full transition-all duration-700 ease-out"></div>
                     </div>
                     
-                    <p className="text-ink/80 font-sans text-sm md:text-base leading-loose mb-8 flex-1 overflow-hidden line-clamp-4">
+                    <p className="text-ink/80 font-sans text-sm md:text-base leading-loose mb-8 flex-1 overflow-hidden line-clamp-3">
                       {god.desc}
                     </p>
                     
