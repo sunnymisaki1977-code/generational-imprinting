@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElement | null) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  // 翻轉後 5 秒自動翻回正面
+  useEffect(() => {
+    if (isFlipped) {
+      const timer = setTimeout(() => {
+        setIsFlipped(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [isFlipped]);
 
   return (
     <div 
@@ -23,29 +33,22 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
         {/* ================= 正面 (Front Face) ================= */}
         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-rice border-2 border-ink shadow-[8px_8px_0_#171717] flex flex-col overflow-hidden group-hover:-translate-y-2 transition-transform duration-300">
           <div className="relative w-full h-full">
-            {/* 正面影像 (預設霧化，Hover變清晰提亮) */}
+            {/* 正面影像 (預設微霧化，Hover變清晰提亮) */}
             <div 
-              className="absolute inset-0 bg-cover bg-center blur-[4px] brightness-90 group-hover:blur-0 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 bg-cover bg-center blur-[2px] brightness-95 group-hover:blur-0 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
               style={{ backgroundImage: `url("${god.image}")` }}
             ></div>
             
             {/* 正面漸層遮罩讓文字清晰 */}
             <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
-            
-            {/* 懸停提示 */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex flex-col items-center pointer-events-none">
-              <span className="w-12 h-12 border border-white/50 rounded-full flex items-center justify-center mb-3 bg-black/30 backdrop-blur-md text-white font-serif shadow-lg text-lg">
-                ↺
-              </span>
-              <span className="text-white text-xs font-sans tracking-[0.3em] drop-shadow-md">點擊翻閱</span>
-            </div>
 
             {/* 神明名稱 (置於底部) */}
-            <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
+            <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none flex flex-col justify-end h-full pb-2">
               <span className="text-vermilion font-sans tracking-[0.4em] text-xs mb-2 block uppercase drop-shadow-md">
                 Deity
               </span>
-              <h3 className="text-4xl md:text-5xl font-serif text-rice tracking-widest drop-shadow-xl font-bold">
+              {/* 避免文字太長被切斷，調整文字大小並設定 leading-tight */}
+              <h3 className="text-3xl lg:text-4xl font-serif text-rice tracking-widest drop-shadow-xl font-bold leading-tight">
                 {god.name}
               </h3>
             </div>
