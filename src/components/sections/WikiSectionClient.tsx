@@ -33,9 +33,9 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
         {/* ================= 正面 (Front Face) ================= */}
         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-rice border-2 border-ink shadow-[8px_8px_0_#171717] flex flex-col overflow-hidden group-hover:-translate-y-2 transition-transform duration-300">
           <div className="relative w-full h-full bg-rice">
-            {/* 正面影像 (預設微霧化，Hover變清晰提亮且不裁切) */}
+            {/* 正面影像 (移除霧化，Hover時提亮放大) */}
             <div 
-              className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] brightness-95 group-hover:blur-0 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 bg-contain bg-no-repeat bg-center brightness-95 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
               style={{ backgroundImage: `url("${god.image}")` }}
             ></div>
             
