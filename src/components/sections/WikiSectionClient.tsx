@@ -63,50 +63,53 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
             典藏
           </div>
 
-          {/* 左上方直書詩句 */}
-          <div className="absolute top-6 left-6 z-20 bg-rice/95 px-1.5 py-3 border border-ink/30 shadow-sm">
-            <span className="writing-vertical-rl text-[11px] font-serif text-ink tracking-[0.3em] leading-loose">
-              {god.poem || "神威顯赫"}
-            </span>
-          </div>
-
-          <div className="flex flex-col flex-1 mt-12 ml-10">
-            <h3 className="text-3xl font-serif text-ink mb-2 tracking-wider">
-              {god.name}
-            </h3>
-            <h4 className="text-sm font-sans text-ink/60 mb-4 tracking-widest leading-relaxed line-clamp-2">
+          <div className="flex flex-col flex-1 mt-4 mr-8 overflow-y-auto custom-scrollbar">
+            {/* 1. 副標題 (對應 Notion Heading 2) */}
+            <h4 className="text-lg md:text-xl font-serif text-ink font-bold mb-4 tracking-wider leading-relaxed">
               {god.title}
             </h4>
             
-            <div className="w-full h-px bg-ink/20 mb-6 shrink-0 relative overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-1/3 bg-vermilion"></div>
+            {/* 分隔線 */}
+            <div className="w-full h-px bg-ink/20 mb-4 shrink-0 relative overflow-hidden">
+              <div className="absolute left-0 top-0 h-full w-1/4 bg-vermilion"></div>
             </div>
             
-            <p className="text-ink/80 font-sans text-sm md:text-base leading-loose mb-6 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+            {/* 2. 內文 (對應 Notion Paragraph) */}
+            <p className="text-ink/80 font-sans text-sm leading-loose mb-6">
               {god.desc}
             </p>
             
-            {/* Tags (朱紅底白字) */}
-            <div className="flex flex-wrap gap-1.5 mb-6">
+            {/* 3. 引言詩句 (對應 Notion Quote Block) */}
+            {god.poem && (
+              <div className="border-l-2 border-ink/40 pl-4 py-1 mb-6">
+                <p className="text-ink font-serif text-sm tracking-widest leading-relaxed">
+                  {god.poem}
+                </p>
+              </div>
+            )}
+            
+            {/* 4. 標籤 (對應 Notion 標籤段落) */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-xs font-sans text-ink/60 tracking-widest flex items-center">標籤:</span>
               {god.tags.map((tag, idx) => (
-                <span key={idx} className="text-[10px] font-sans tracking-widest text-white bg-vermilion px-2 py-1 shadow-sm">
-                  {tag}
+                <span key={idx} className="text-[11px] font-sans tracking-widest text-ink/80 bg-ink/5 px-2 py-1 border border-ink/10 rounded-sm">
+                  #{tag}
                 </span>
               ))}
             </div>
-            
-            {/* 按鈕 */}
-            <div className="mt-auto pt-4 border-t border-ink/20 shrink-0">
-              <button 
-                className="flex items-center justify-between w-full text-ink text-sm font-sans tracking-[0.2em] hover:text-vermilion hover:tracking-[0.3em] transition-all duration-300"
-                onClick={(e) => {
-                  e.stopPropagation(); // 避免點擊按鈕時觸發翻轉
-                }}
-              >
-                <span>研閱列傳</span>
-                <span className="font-serif">→</span>
-              </button>
-            </div>
+          </div>
+          
+          {/* 按鈕 */}
+          <div className="mt-auto pt-4 border-t border-ink/20 shrink-0">
+            <button 
+              className="flex items-center justify-between w-full text-ink text-sm font-sans tracking-[0.2em] hover:text-vermilion hover:tracking-[0.3em] transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation(); // 避免點擊按鈕時觸發翻轉
+              }}
+            >
+              <span>研閱列傳</span>
+              <span className="font-serif">→</span>
+            </button>
           </div>
         </div>
       </div>
