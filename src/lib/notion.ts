@@ -160,8 +160,8 @@ export async function getGodsData(): Promise<GodData[]> {
         tags: ["佛教", "未來佛", "歡喜"], image: "/Gods%20card/彌勒尊佛.png"
       },
       {
-        id: "mock9", name: "武德尊侯沈祖公", title: "地方鄉土神祇", desc: "探討特定姓氏與聚落的守護神，解析血緣與地緣信仰的交織。",
-        tags: ["鄉土神", "祖靈", "聚落"], image: "/Gods%20card/武德尊侯沈祖公.png"
+        id: "mock9", name: "武德尊侯沈祖公", title: "[道] 唐代開漳功臣與沈氏血緣地緣守護神", desc: "原名沈世紀，為唐代開漳名將。於台灣民間信仰中，具備血緣祖靈與地緣守護神之雙重性格，深受沈氏族人崇祀。",
+        tags: ["開漳功臣", "血緣神明", "沈氏宗親"], image: "/Gods%20card/武德尊侯沈祖公.png", poem: "武烈昭彰護閩台，德馨遠播祖風長。"
       },
       {
         id: "mock10", name: "清水祖師", title: "除瘟祈雨的高僧", desc: "從北宋禪師至閩南安溪人的守護神，解析佛教僧侶神格化的過程。",
