@@ -32,15 +32,15 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
         
         {/* ================= 正面 (Front Face) ================= */}
         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-rice border-2 border-ink shadow-[8px_8px_0_#171717] flex flex-col overflow-hidden group-hover:-translate-y-2 transition-transform duration-300">
-          <div className="relative w-full h-full">
-            {/* 正面影像 (預設微霧化，Hover變清晰提亮) */}
+          <div className="relative w-full h-full bg-rice">
+            {/* 正面影像 (預設微霧化，Hover變清晰提亮且不裁切) */}
             <div 
-              className="absolute inset-0 bg-cover bg-center blur-[2px] brightness-95 group-hover:blur-0 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] brightness-95 group-hover:blur-0 group-hover:brightness-110 transition-all duration-700 ease-out group-hover:scale-105"
               style={{ backgroundImage: `url("${god.image}")` }}
             ></div>
             
-            {/* 正面漸層遮罩讓文字清晰 */}
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
+            {/* 正面漸層遮罩讓文字清晰 (Hover 時大幅降低透明度以全亮顯示) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-80 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"></div>
 
             {/* 神明名稱 (置於底部) */}
             <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none flex flex-col justify-end h-full pb-2">
@@ -48,7 +48,7 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
                 Deity
               </span>
               {/* 避免文字太長被切斷，調整文字大小並設定 leading-tight */}
-              <h3 className="text-3xl lg:text-4xl font-serif text-rice tracking-widest drop-shadow-xl font-bold leading-tight">
+              <h3 className="text-3xl lg:text-4xl font-serif text-rice tracking-widest drop-shadow-xl font-bold leading-tight group-hover:drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] transition-all duration-700">
                 {god.name}
               </h3>
             </div>
