@@ -54,6 +54,7 @@ export async function getGodsData(): Promise<GodData[]> {
       let tags: string[] = [];
       let poem = "";
       let isPromptSection = false;
+      let imageUrl = "";
 
       for (const block of blocks) {
         if (!('type' in block)) continue;
@@ -106,6 +107,16 @@ export async function getGodsData(): Promise<GodData[]> {
             desc += desc ? `\n${text}` : text;
           }
         }
+
+        // 解析從 Vercel Blob 推播過來的圖片
+        if (block.type === 'image') {
+          const imgObj = (block as any).image;
+          if (imgObj?.type === 'external' && imgObj.external?.url) {
+            imageUrl = imgObj.external.url;
+          } else if (imgObj?.type === 'file' && imgObj.file?.url) {
+            imageUrl = imgObj.file.url;
+          }
+        }
       }
 
       gods.push({
@@ -114,7 +125,7 @@ export async function getGodsData(): Promise<GodData[]> {
         title: title || "神明列傳",
         desc: desc || "尚無文獻資料。",
         tags: tags.length > 0 ? tags : ["信仰", "傳承"],
-        image: `/Gods%20card/${name}.png`, // 自動對應 public 目錄下的圖片，使用 %20 避免空白造成載入失敗
+        image: imageUrl || `/Gods%20card/${name}.png`, // 優先使用 Notion 內的雲端圖片，若無則降級使用本地圖片
         poem: poem || "神威顯赫",
       });
     }
