@@ -8,7 +8,7 @@ import { GodData } from "@/lib/notion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElement | null) => void }) {
+function GodCard({ god, innerRef, onSelectTag }: { god: GodData, innerRef: (el: HTMLDivElement | null) => void, onSelectTag?: (tag: string) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   // 翻轉後 5 秒自動翻回正面
@@ -92,24 +92,31 @@ function GodCard({ god, innerRef }: { god: GodData, innerRef: (el: HTMLDivElemen
             <div className="flex flex-wrap gap-2 mb-6">
               <span className="text-xs font-sans text-ink/60 tracking-widest flex items-center">標籤:</span>
               {god.tags.map((tag, idx) => (
-                <span key={idx} className="text-[11px] font-sans tracking-widest text-ink/80 bg-ink/5 px-2 py-1 border border-ink/10 rounded-sm">
+                <span 
+                  key={idx} 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onSelectTag) onSelectTag(tag);
+                  }}
+                  className="text-[11px] font-sans tracking-widest text-ink/80 bg-ink/5 hover:bg-vermilion hover:text-rice px-2 py-1 border border-ink/10 rounded-sm cursor-pointer transition-colors duration-200"
+                >
                   #{tag}
                 </span>
               ))}
             </div>
-          </div>
-          
-          {/* 按鈕 */}
-          <div className="mt-auto pt-4 border-t border-ink/20 shrink-0">
-            <button 
-              className="flex items-center justify-between w-full text-ink text-sm font-sans tracking-[0.2em] hover:text-vermilion hover:tracking-[0.3em] transition-all duration-300"
-              onClick={(e) => {
-                e.stopPropagation(); // 避免點擊按鈕時觸發翻轉
-              }}
-            >
-              <span>研閱列傳</span>
-              <span className="font-serif">→</span>
-            </button>
+            
+            {/* 按鈕 */}
+            <div className="mt-auto pt-4 border-t border-ink/20 shrink-0">
+              <button 
+                className="flex items-center justify-between w-full text-ink text-sm font-sans tracking-[0.2em] hover:text-vermilion hover:tracking-[0.3em] transition-all duration-300"
+                onClick={(e) => {
+                  e.stopPropagation(); // 避免點擊按鈕時觸發翻轉
+                }}
+              >
+                <span>研閱列傳</span>
+                <span className="font-serif">→</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -121,6 +128,41 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   const container = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // 篩選與分頁狀態
+  const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const cardsPerPage = 12;
+
+  // 提取所有不重複標籤
+  const allTags = Array.from(new Set(gods.flatMap(g => g.tags))).filter(Boolean);
+
+  // 篩選邏輯
+  const filteredGods = gods.filter(god => {
+    if (selectedCategory !== "ALL" && god.category !== selectedCategory) {
+      return false;
+    }
+    if (selectedTag && !god.tags.includes(selectedTag)) {
+      return false;
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.trim().toLowerCase();
+      const matchName = god.name.toLowerCase().includes(q);
+      const matchTitle = god.title.toLowerCase().includes(q);
+      const matchDesc = god.desc.toLowerCase().includes(q);
+      const matchTag = god.tags.some(t => t.toLowerCase().includes(q.replace("#", "")));
+      if (!matchName && !matchTitle && !matchDesc && !matchTag) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  // 分頁邏輯
+  const totalPages = Math.ceil(filteredGods.length / cardsPerPage) || 1;
+  const paginatedGods = filteredGods.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage);
 
   useGSAP(() => {
     // Title reveal
@@ -136,54 +178,229 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
         }
       }
     );
+  }, { scope: container });
 
-    // Cards stagger reveal
-    if (cardsRef.current.length > 0) {
-      gsap.fromTo(cardsRef.current,
-        { opacity: 0, y: 80, rotateX: -15, scale: 0.95 },
+  // 當切換分頁或篩選時，為當前頁面的卡片播放進場動畫
+  useGSAP(() => {
+    const activeCards = cardsRef.current.slice(0, paginatedGods.length).filter(Boolean);
+    if (activeCards.length > 0) {
+      gsap.fromTo(activeCards,
+        { opacity: 0, y: 50, scale: 0.96 },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
           scale: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 60%",
-          }
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          overwrite: "auto",
         }
       );
     }
-  }, { scope: container, dependencies: [gods] });
+  }, { scope: container, dependencies: [currentPage, selectedCategory, selectedTag, searchQuery, paginatedGods.length] });
 
   return (
     <div ref={container} className="min-h-screen flex items-center justify-center py-24 px-4 md:px-10 bg-rice relative">
       <div className="absolute top-0 left-0 w-full h-px bg-ink/10"></div>
       
       <div className="max-w-7xl w-full z-10">
-        <div className="flex flex-col items-center mb-16">
-          <span className="text-vermilion font-sans tracking-[0.3em] text-sm mb-3 uppercase">Encyclopedia</span>
-          <h2 ref={titleRef} className="text-4xl md:text-5xl font-serif text-ink text-center tracking-widest opacity-0">
+        <div className="flex flex-col items-center mb-10">
+          <span className="text-vermilion font-sans tracking-[0.3em] text-sm mb-3 uppercase font-bold">Deities Encyclopedia</span>
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-serif text-ink text-center tracking-widest opacity-0 font-bold mb-4">
             【諸神・紀略】
           </h2>
+          <p className="text-ink/70 font-sans text-sm tracking-widest text-center max-w-xl">
+            收錄臺灣世代信仰神仙列傳，應用儒、釋、道三教分類與主題標籤進行探索
+          </p>
+        </div>
+
+        {/* ================= 儒釋道卡片分類 Tabs ================= */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+          {[
+            { id: "ALL", label: "全部諸神", count: gods.length, desc: "完整圖鑑" },
+            { id: "儒", label: "儒・聖賢文昌", count: gods.filter(g => g.category === "儒").length, desc: "科舉名臣與至聖先師" },
+            { id: "釋", label: "釋・佛菩薩禪", count: gods.filter(g => g.category === "釋").length, desc: "慈悲普度與高僧禪宗" },
+            { id: "道", label: "道・民間信仰", count: gods.filter(g => g.category === "道").length, desc: "天帝王爺與在地守護" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => { setSelectedCategory(tab.id as any); setCurrentPage(1); }}
+              className={`group flex flex-col items-center px-6 py-3 rounded-xl font-serif tracking-widest transition-all duration-300 border shadow-sm ${
+                selectedCategory === tab.id
+                  ? "bg-vermilion text-rice border-vermilion shadow-lg scale-105 font-bold"
+                  : "bg-rice/80 text-ink/80 border-ink/20 hover:border-vermilion/80 hover:text-vermilion hover:bg-rice hover:shadow-md"
+              }`}
+            >
+              <div className="flex items-center gap-2 text-base md:text-lg">
+                <span>{tab.label}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-sans ${
+                  selectedCategory === tab.id ? "bg-rice/20 text-rice" : "bg-ink/10 text-ink/70 group-hover:bg-vermilion/10 group-hover:text-vermilion"
+                }`}>
+                  {tab.count}
+                </span>
+              </div>
+              <span className={`text-[11px] font-sans tracking-normal mt-1 opacity-80 ${
+                selectedCategory === tab.id ? "text-rice/90" : "text-ink/50"
+              }`}>
+                {tab.desc}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* ================= #tag 搜尋與篩選區域 ================= */}
+        <div className="max-w-4xl mx-auto mb-12 flex flex-col items-center gap-4 bg-ink/[0.02] p-6 rounded-2xl border border-ink/10 shadow-inner">
+          {/* 搜尋輸入框 */}
+          <div className="relative w-full">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/50 pointer-events-none font-serif">
+              🔍
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              placeholder="搜尋神明尊號、文獻事蹟或 #標籤 (例如：武財神、文昌、保平安、除瘟)..."
+              className="w-full pl-12 pr-24 py-3.5 rounded-xl bg-rice border-2 border-ink/20 focus:border-vermilion text-ink placeholder-ink/40 font-sans text-sm md:text-base tracking-wider focus:outline-none transition-all shadow-sm"
+            />
+            {(searchQuery || selectedTag || selectedCategory !== "ALL") && (
+              <button
+                onClick={() => { setSearchQuery(""); setSelectedTag(null); setSelectedCategory("ALL"); setCurrentPage(1); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-sans text-vermilion hover:bg-vermilion hover:text-rice tracking-widest bg-vermilion/10 px-3 py-1.5 rounded-lg transition-colors font-bold"
+              >
+                重置全部 ✕
+              </button>
+            )}
+          </div>
+
+          {/* 標籤雲 / 篩選列 */}
+          {allTags.length > 0 && (
+            <div className="w-full flex flex-wrap items-center justify-center gap-2 pt-2">
+              <span className="text-xs font-serif font-bold text-ink/70 tracking-widest mr-1 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-vermilion inline-block"></span>
+                熱門主題標籤:
+              </span>
+              {allTags.slice(0, 28).map((tag, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setSelectedTag(selectedTag === tag ? null : tag);
+                    setCurrentPage(1);
+                  }}
+                  className={`text-xs font-sans tracking-widest px-3 py-1 rounded-full transition-all duration-200 border flex items-center gap-1 ${
+                    selectedTag === tag
+                      ? "bg-vermilion text-rice border-vermilion shadow-md font-bold scale-105"
+                      : "bg-rice/90 text-ink/80 border-ink/20 hover:border-vermilion hover:text-vermilion hover:bg-white"
+                  }`}
+                >
+                  <span>#{tag}</span>
+                  {selectedTag === tag && <span className="text-[10px]">✕</span>}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* 目前篩選狀態提示 */}
+          {(selectedCategory !== "ALL" || selectedTag || searchQuery) && (
+            <div className="w-full flex items-center justify-between text-xs font-sans text-ink/70 bg-vermilion/5 border border-vermilion/20 px-4 py-2 rounded-lg mt-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-bold text-vermilion">目前篩選條件：</span>
+                {selectedCategory !== "ALL" && <span className="bg-ink/10 px-2 py-0.5 rounded">分類: {selectedCategory}</span>}
+                {selectedTag && <span className="bg-ink/10 px-2 py-0.5 rounded">標籤: #{selectedTag}</span>}
+                {searchQuery && <span className="bg-ink/10 px-2 py-0.5 rounded">關鍵字: &quot;{searchQuery}&quot;</span>}
+              </div>
+              <span className="font-bold text-ink">共找到 {filteredGods.length} 尊</span>
+            </div>
+          )}
         </div>
         
+        {/* ================= 卡片網格與結果 ================= */}
         {gods.length === 0 ? (
           <div className="text-center text-ink/50 py-20 font-sans tracking-widest">
             正在從 Notion 載入文獻資料...
           </div>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12">
-            {gods.map((god, i) => (
-              <GodCard 
-                key={god.id} 
-                god={god} 
-                innerRef={(el) => { cardsRef.current[i] = el; }} 
-              />
-            ))}
+        ) : filteredGods.length === 0 ? (
+          <div className="text-center py-20 bg-ink/[0.02] rounded-2xl border border-ink/10 max-w-xl mx-auto my-8 p-8">
+            <div className="text-4xl mb-4">📜</div>
+            <h3 className="text-xl font-serif text-ink font-bold mb-2 tracking-wider">查無神明文獻</h3>
+            <p className="text-ink/60 font-sans text-sm tracking-widest mb-6 leading-relaxed">
+              目前「{selectedCategory !== "ALL" ? selectedCategory : ""}」分類或「{selectedTag ? `#${selectedTag}` : searchQuery}」條件下沒有對應的神明卡片。
+            </p>
+            <button
+              onClick={() => { setSelectedCategory("ALL"); setSelectedTag(null); setSearchQuery(""); setCurrentPage(1); }}
+              className="px-6 py-2.5 bg-vermilion text-rice rounded-lg font-serif text-sm tracking-widest hover:bg-vermilion/90 transition-all shadow-md font-bold"
+            >
+              顯示全部神明 ({gods.length} 尊)
+            </button>
           </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12 min-h-[550px]">
+              {paginatedGods.map((god, i) => (
+                <GodCard 
+                  key={god.id} 
+                  god={god} 
+                  innerRef={(el) => { cardsRef.current[i] = el; }}
+                  onSelectTag={(tag) => {
+                    setSelectedTag(tag);
+                    setCurrentPage(1);
+                    container.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* ================= 分頁導覽按鈕 (Pagination) ================= */}
+            {totalPages > 1 && (
+              <div className="mt-16 pt-8 border-t border-ink/10 flex flex-col items-center gap-6">
+                <div className="text-xs font-sans text-ink/60 tracking-widest bg-ink/5 px-4 py-1.5 rounded-full border border-ink/10">
+                  顯示第 {(currentPage - 1) * cardsPerPage + 1} - {Math.min(currentPage * cardsPerPage, filteredGods.length)} 尊，共 {filteredGods.length} 尊神明 (第 {currentPage} / {totalPages} 頁)
+                </div>
+                
+                <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => {
+                      setCurrentPage(prev => Math.max(1, prev - 1));
+                      container.current?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="px-5 py-2.5 rounded-xl border-2 border-ink/20 text-ink text-sm font-serif tracking-widest disabled:opacity-30 disabled:cursor-not-allowed hover:border-vermilion hover:text-vermilion hover:bg-vermilion/5 transition-all bg-rice font-bold shadow-sm"
+                  >
+                    &lt; 上一頁
+                  </button>
+                  
+                  <div className="flex items-center gap-1.5">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => {
+                          setCurrentPage(page);
+                          container.current?.scrollIntoView({ behavior: "smooth" });
+                        }}
+                        className={`w-11 h-11 rounded-xl font-serif text-base flex items-center justify-center transition-all duration-200 border ${
+                          currentPage === page
+                            ? "bg-vermilion text-rice font-bold shadow-lg scale-110 border-vermilion"
+                            : "bg-rice text-ink hover:border-vermilion hover:text-vermilion border-ink/20 shadow-sm"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => {
+                      setCurrentPage(prev => Math.min(totalPages, prev + 1));
+                      container.current?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="px-5 py-2.5 rounded-xl border-2 border-ink/20 text-ink text-sm font-serif tracking-widest disabled:opacity-30 disabled:cursor-not-allowed hover:border-vermilion hover:text-vermilion hover:bg-vermilion/5 transition-all bg-rice font-bold shadow-sm"
+                  >
+                    下一頁 &gt;
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
