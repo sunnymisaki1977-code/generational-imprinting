@@ -16,7 +16,10 @@ export interface GodData {
 }
 
 export async function getGodsData(): Promise<GodData[]> {
-  const databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID;
+  let databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID || "3a483ac4-2037-80aa-9964-000b61961d9e";
+  if (databaseId.replace(/-/g, "") === "3a483ac4203780c89a41d8f53601c864") {
+    databaseId = "3a483ac4-2037-80aa-9964-000b61961d9e";
+  }
   
   if (!databaseId || !process.env.NOTION_API_KEY) {
     console.warn("Missing Notion API keys");
