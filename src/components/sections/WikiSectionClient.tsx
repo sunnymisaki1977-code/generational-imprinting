@@ -129,6 +129,37 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
+  // 預設取每一尊的第一個版本，避免 SSR 時畫面空白或 Hydration Error
+  const [displayGods, setDisplayGods] = useState<GodData[]>(() => {
+    const grouped = new Map<string, GodData[]>();
+    for (const god of gods) {
+      if (!grouped.has(god.name)) {
+        grouped.set(god.name, []);
+        grouped.get(god.name)!.push(god);
+      }
+    }
+    return Array.from(grouped.values()).map(v => v[0]);
+  });
+
+  // 在 Client-side 掛載時，隨機挑選各神明的一個版本
+  useEffect(() => {
+    const grouped = new Map<string, GodData[]>();
+    for (const god of gods) {
+      if (!grouped.has(god.name)) {
+        grouped.set(god.name, []);
+      }
+      grouped.get(god.name)!.push(god);
+    }
+    
+    const randomlySelected: GodData[] = [];
+    grouped.forEach((versions) => {
+      const randomIndex = Math.floor(Math.random() * versions.length);
+      randomlySelected.push(versions[randomIndex]);
+    });
+    
+    setDisplayGods(randomlySelected);
+  }, [gods]);
+
   // 篩選與分頁狀態
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -137,10 +168,10 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   const cardsPerPage = 12;
 
   // 提取所有不重複標籤
-  const allTags = Array.from(new Set(gods.flatMap(g => g.tags))).filter(Boolean);
+  const allTags = Array.from(new Set(displayGods.flatMap(g => g.tags))).filter(Boolean);
 
   // 篩選邏輯
-  const filteredGods = gods.filter(god => {
+  const filteredGods = displayGods.filter(god => {
     if (selectedCategory !== "ALL" && god.category !== selectedCategory) {
       return false;
     }
@@ -217,10 +248,10 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
         {/* ================= 儒釋道卡片分類 Tabs ================= */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
           {[
-            { id: "ALL", label: "全部諸神", count: gods.length, desc: "完整圖鑑" },
-            { id: "儒", label: "儒・聖賢文昌", count: gods.filter(g => g.category === "儒").length, desc: "科舉名臣與至聖先師" },
-            { id: "釋", label: "釋・佛菩薩禪", count: gods.filter(g => g.category === "釋").length, desc: "慈悲普度與高僧禪宗" },
-            { id: "道", label: "道・民間信仰", count: gods.filter(g => g.category === "道").length, desc: "天帝王爺與在地守護" },
+            { id: "ALL", label: "全部諸神", count: displayGods.length, desc: "完整圖鑑" },
+            { id: "儒", label: "儒・聖賢文昌", count: displayGods.filter(g => g.category === "儒").length, desc: "科舉名臣與至聖先師" },
+            { id: "釋", label: "釋・佛菩薩禪", count: displayGods.filter(g => g.category === "釋").length, desc: "慈悲普度與高僧禪宗" },
+            { id: "道", label: "道・民間信仰", count: displayGods.filter(g => g.category === "道").length, desc: "天帝王爺與在地守護" },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -314,7 +345,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
         </div>
         
         {/* ================= 卡片網格與結果 ================= */}
-        {gods.length === 0 ? (
+        {displayGods.length === 0 ? (
           <div className="text-center text-ink/50 py-20 font-sans tracking-widest">
             正在從 Notion 載入文獻資料...
           </div>
@@ -329,7 +360,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
               onClick={() => { setSelectedCategory("ALL"); setSelectedTag(null); setSearchQuery(""); setCurrentPage(1); }}
               className="px-6 py-2.5 bg-vermilion text-rice rounded-lg font-serif text-sm tracking-widest hover:bg-vermilion/90 transition-all shadow-md font-bold"
             >
-              顯示全部神明 ({gods.length} 尊)
+              顯示全部神明 ({displayGods.length} 尊)
             </button>
           </div>
         ) : (
