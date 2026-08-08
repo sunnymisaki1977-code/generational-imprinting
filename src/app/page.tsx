@@ -5,6 +5,8 @@ import StorySection from "@/components/sections/StorySection";
 import LiteratureSection from "@/components/sections/LiteratureSection";
 import MapSection from "@/components/sections/MapSection";
 
+export const revalidate = 600; // 每 10 分鐘 (600 秒) 在背景重新驗證/抓取資料一次
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start bg-xuan text-bone selection:bg-amber selection:text-xuan">
