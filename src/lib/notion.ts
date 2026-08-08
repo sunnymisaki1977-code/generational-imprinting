@@ -112,16 +112,6 @@ export async function getGodsData(): Promise<GodData[]> {
             desc += desc ? `\n${text}` : text;
           }
         }
-
-        // 解析從 Vercel Blob 推播過來的圖片
-        if (block.type === 'image') {
-          const imgObj = (block as any).image;
-          if (imgObj?.type === 'external' && imgObj.external?.url) {
-            imageUrl = imgObj.external.url;
-          } else if (imgObj?.type === 'file' && imgObj.file?.url) {
-            imageUrl = imgObj.file.url;
-          }
-        }
       }
 
       // 分類邏輯 (儒、釋、道)
@@ -136,7 +126,8 @@ export async function getGodsData(): Promise<GodData[]> {
       nameCounts[name] = (nameCounts[name] || 0) + 1;
       const index = nameCounts[name];
       const imageSuffix = index === 1 ? "" : ` (${index})`; // 加上一個空白以符合 Windows 預設的命名習慣
-      const defaultImage = `/Gods%20card/${name}${imageSuffix}.png`;
+      const filename = `${name}${imageSuffix}.png`;
+      const defaultImage = `/Gods%20card/${encodeURIComponent(filename)}`;
 
       gods.push({
         id: page.id,
@@ -144,7 +135,7 @@ export async function getGodsData(): Promise<GodData[]> {
         title: title || "神明列傳",
         desc: desc || "尚無文獻資料。",
         tags: tags.length > 0 ? tags : ["信仰", "傳承"],
-        image: imageUrl || defaultImage,
+        image: defaultImage,
         poem: poem || "神威顯赫",
         category,
       });
