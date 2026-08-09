@@ -13,6 +13,9 @@ export default function Navbar() {
           <a href="#wiki" className="hover:text-vermilion transition-colors duration-300">諸神</a>
         </li>
         <li>
+          <a href="#calendar" className="hover:text-vermilion transition-colors duration-300">歲時</a>
+        </li>
+        <li>
           <a href="#story" className="hover:text-vermilion transition-colors duration-300">說書</a>
         </li>
         <li>

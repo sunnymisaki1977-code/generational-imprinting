@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import WikiSection from "@/components/sections/WikiSection";
 import StorySection from "@/components/sections/StorySection";
+import CalendarSection from "@/components/sections/CalendarSection";
 import LiteratureSection from "@/components/sections/LiteratureSection";
 import MapSection from "@/components/sections/MapSection";
 
@@ -21,6 +22,11 @@ export default function Home() {
         {/* 諸神・紀略 */}
         <section id="wiki">
           <WikiSection />
+        </section>
+
+        {/* 歲時・紀曆 */}
+        <section id="calendar">
+          <CalendarSection />
         </section>
 
         {/* 說書・影音 */}
