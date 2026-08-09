@@ -23,6 +23,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Scrollbar styling for light theme */
 ::-webkit-scrollbar {
   width: 8px;
