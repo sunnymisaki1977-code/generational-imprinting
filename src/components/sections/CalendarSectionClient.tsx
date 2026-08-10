@@ -130,7 +130,7 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // 預設取每一尊的第一個版本，避免 SSR 時畫面空白或 Hydration Error
-  const [displaySolars, setDisplayGods] = useState<GodData[]>(() => {
+  const [displaySolars, setDisplaySolars] = useState<GodData[]>(() => {
     const grouped = new Map<string, GodData[]>();
     for (const solar of solars) {
       if (!grouped.has(solar.name)) {
@@ -157,8 +157,8 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
       randomlySelected.push(versions[randomIndex]);
     });
     
-    setDisplayGods(randomlySelected);
-  }, [gods]);
+    setDisplaySolars(randomlySelected);
+  }, [solars]);
 
   // 篩選與分頁狀態
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
