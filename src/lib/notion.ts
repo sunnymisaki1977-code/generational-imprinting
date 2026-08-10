@@ -118,8 +118,9 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
       // 分類邏輯 (儒、釋、道、歲時)
       let category: "儒" | "釋" | "道" | "歲時" = "道"; // 預設為道教與民間信仰
       const textToMatch = `${name} ${title} ${tags.join(" ")} ${desc}`.toLowerCase();
+      const strictTextToMatch = `${name} ${title} ${tags.join(" ")}`.toLowerCase();
       
-      if (/節氣|歲時|七十二候|物候|立春|雨水|驚蟄|春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒/.test(textToMatch)) {
+      if (/節氣|歲時|七十二候|物候|立春|雨水|驚蟄|春分|清明|穀雨|立夏|小滿|芒種|夏至|小暑|大暑|立秋|處暑|白露|秋分|寒露|霜降|立冬|小雪|大雪|冬至|小寒|大寒/.test(strictTextToMatch)) {
         category = "歲時";
       } else if (/佛|菩薩|觀音|觀世音|如來|彌勒|濟公|羅漢|禪|僧|普賢|文殊|地藏|達摩|釋迦|金剛|般若|藏王/.test(textToMatch)) {
         category = "釋";
