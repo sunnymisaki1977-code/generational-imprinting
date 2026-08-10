@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from "@notionhq/client";
+import { cache } from "react";
 
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
@@ -13,10 +14,10 @@ export interface GodData {
   tags: string[];
   image: string;
   poem?: string;
-  category: "儒" | "釋" | "道";
+  category: "儒" | "釋" | "道" | "歲時";
 }
 
-export async function getGodsData(): Promise<GodData[]> {
+export const getGodsData = cache(async (): Promise<GodData[]> => {
   let databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID || "3a483ac4-2037-80aa-9964-000b61961d9e";
   if (databaseId.replace(/-/g, "") === "3a483ac4203780c89a41d8f53601c864") {
     databaseId = "3a483ac4-2037-80aa-9964-000b61961d9e";
@@ -114,10 +115,13 @@ export async function getGodsData(): Promise<GodData[]> {
         }
       }
 
-      // 分類邏輯 (儒、釋、道)
-      let category: "儒" | "釋" | "道" = "道"; // 預設為道教與民間信仰
+      // 分類邏輯 (儒、釋、道、歲時)
+      let category: "儒" | "釋" | "道" | "歲時" = "道"; // 預設為道教與民間信仰
       const textToMatch = `${name} ${title} ${tags.join(" ")} ${desc}`.toLowerCase();
-      if (/佛|菩薩|觀音|觀世音|如來|彌勒|濟公|羅漢|禪|僧|普賢|文殊|地藏|達摩|釋迦|金剛|般若|藏王/.test(textToMatch)) {
+      
+      if (textToMatch.includes("二十四節氣") || textToMatch.includes("歲時節令") || tags.includes("二十四節氣")) {
+        category = "歲時";
+      } else if (/佛|菩薩|觀音|觀世音|如來|彌勒|濟公|羅漢|禪|僧|普賢|文殊|地藏|達摩|釋迦|金剛|般若|藏王/.test(textToMatch)) {
         category = "釋";
       } else if (/孔子|至聖|文昌|魁星|朱衣|魁斗|儒|學士|狀元|四書|五經|孟子|朱熹|王陽明|夫子|書院|倉頡|主考|文衡|考運|科舉|學業/.test(textToMatch)) {
         category = "儒";
@@ -127,7 +131,8 @@ export async function getGodsData(): Promise<GodData[]> {
       const index = nameCounts[name];
       const imageSuffix = index === 1 ? "" : ` (${index})`; // 加上一個空白以符合 Windows 預設的命名習慣
       const filename = `${name}${imageSuffix}.png`;
-      const defaultImage = `/Gods%20card/${encodeURIComponent(filename)}`;
+      const folderName = category === "歲時" ? "Solar%20card" : "Gods%20card";
+      const defaultImage = `/${folderName}/${encodeURIComponent(filename)}`;
 
       gods.push({
         id: page.id,
@@ -200,4 +205,4 @@ export async function getGodsData(): Promise<GodData[]> {
       }
     ];
   }
-}
+});
