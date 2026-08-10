@@ -35,10 +35,13 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
     let hasMore = true;
 
     while (hasMore) {
-      const response = await notion.databases.query({
+      const queryParams: any = {
         database_id: databaseId,
-        start_cursor: cursor,
-      });
+      };
+      if (cursor) {
+        queryParams.start_cursor = cursor;
+      }
+      const response = await notion.databases.query(queryParams);
       
       allPages.push(...response.results);
       hasMore = response.has_more;
