@@ -8,7 +8,7 @@ import { GodData } from "@/lib/notion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function SolarCard({ god, innerRef, onSelectTag }: { god: GodData, innerRef: (el: HTMLDivElement | null) => void, onSelectTag?: (tag: string) => void }) {
+function SolarCard({ solar, innerRef, onSelectTag }: { solar: GodData, innerRef: (el: HTMLDivElement | null) => void, onSelectTag?: (tag: string) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   // 翻轉後 5 秒自動翻回正面
@@ -328,10 +328,10 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
         ) : (
           <>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12 min-h-[550px]">
-              {paginatedSolars.map((god, i) => (
+              {paginatedSolars.map((solar, i) => (
                 <SolarCard 
                   key={solar.id} 
-                  god={god} 
+                  solar={solar} 
                   innerRef={(el) => { cardsRef.current[i] = el; }}
                   onSelectTag={(tag) => {
                     setSelectedTag(tag);
