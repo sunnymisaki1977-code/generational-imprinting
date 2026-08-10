@@ -29,16 +29,27 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
   }
 
   try {
-    // 1. 取得資料庫中的所有頁面
-    const response = await notion.dataSources.query({
-      data_source_id: databaseId,
-    });
+    // 1. 取得資料庫中的所有頁面，處理分頁 (Notion API 預設單次最多 100 筆)
+    let allPages: any[] = [];
+    let cursor: string | undefined = undefined;
+    let hasMore = true;
+
+    while (hasMore) {
+      const response = await notion.databases.query({
+        database_id: databaseId,
+        start_cursor: cursor,
+      });
+      
+      allPages.push(...response.results);
+      hasMore = response.has_more;
+      cursor = response.next_cursor || undefined;
+    }
 
     const gods: GodData[] = [];
     const nameCounts: Record<string, number> = {};
 
     // 2. 針對每一個頁面，取得裡面的內容 (Blocks)
-    for (const page of response.results) {
+    for (const page of allPages) {
       if (!('properties' in page)) continue;
       
       const nameProp = page.properties.Name;
