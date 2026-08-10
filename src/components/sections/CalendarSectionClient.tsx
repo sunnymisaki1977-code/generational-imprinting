@@ -135,7 +135,7 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
     for (const solar of solars) {
       if (!grouped.has(solar.name)) {
         grouped.set(solar.name, []);
-        grouped.get(solar.name)!.push(god);
+        grouped.get(solar.name)!.push(solar);
       }
     }
     return Array.from(grouped.values()).map(v => v[0]);
@@ -148,7 +148,7 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
       if (!grouped.has(solar.name)) {
         grouped.set(solar.name, []);
       }
-      grouped.get(solar.name)!.push(god);
+      grouped.get(solar.name)!.push(solar);
     }
     
     const randomlySelected: GodData[] = [];
