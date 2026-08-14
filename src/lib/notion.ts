@@ -31,21 +31,26 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
   try {
     // 1. 取得資料庫中的所有頁面，處理分頁 (Notion API 預設單次最多 100 筆)
     let allPages: any[] = [];
-    let cursor: string | undefined = undefined;
-    let hasMore = true;
+    const solarDbId = process.env.NOTION_SOLAR_ID || "3bc83ac4-2037-8082-9580-fb0911733aa0";
+    const dbIds = [databaseId, solarDbId];
 
-    while (hasMore) {
-      const queryParams: any = {
-        data_source_id: databaseId,
-      };
-      if (cursor) {
-        queryParams.start_cursor = cursor;
+    for (const dbId of dbIds) {
+      let cursor: string | undefined = undefined;
+      let hasMore = true;
+
+      while (hasMore) {
+        const queryParams: any = {
+          data_source_id: dbId,
+        };
+        if (cursor) {
+          queryParams.start_cursor = cursor;
+        }
+        const response = await (notion as any).dataSources.query(queryParams);
+        
+        allPages.push(...response.results);
+        hasMore = response.has_more;
+        cursor = response.next_cursor || undefined;
       }
-      const response = await (notion as any).dataSources.query(queryParams);
-      
-      allPages.push(...response.results);
-      hasMore = response.has_more;
-      cursor = response.next_cursor || undefined;
     }
 
     const gods: GodData[] = [];
