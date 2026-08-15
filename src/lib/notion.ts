@@ -70,7 +70,11 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
     for (const page of allPages) {
       if (!('properties' in page)) continue;
       
-      const nameProp = page.properties.Name;
+      let nameProp = page.properties.Name;
+      if (!nameProp) {
+        nameProp = Object.values(page.properties).find((p: any) => p.type === 'title');
+      }
+
       let name = "";
       if (nameProp?.type === 'title' && Array.isArray(nameProp.title) && nameProp.title.length > 0) {
         name = (nameProp.title as any[])[0].plain_text;
