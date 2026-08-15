@@ -18,21 +18,21 @@ export interface GodData {
 }
 
 export const getGodsData = cache(async (): Promise<GodData[]> => {
-  let databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID || "3a483ac4-2037-80aa-9964-000b61961d9e";
-  if (databaseId.replace(/-/g, "") === "3a483ac4203780c89a41d8f53601c864") {
-    databaseId = "3a483ac4-2037-80aa-9964-000b61961d9e";
-  }
+  const databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID;
+  const solarDbId = process.env.NOTION_SOLAR_ID;
   
   if (!databaseId || !process.env.NOTION_API_KEY) {
-    console.warn("Missing Notion API keys");
+    console.warn("Missing Notion API keys or Gods Database ID");
     return [];
   }
 
   try {
     // 1. 取得資料庫中的所有頁面，處理分頁 (Notion API 預設單次最多 100 筆)
     let allPages: any[] = [];
-    const solarDbId = process.env.NOTION_SOLAR_ID || "3bc83ac4-2037-8082-9580-fb0911733aa0";
-    const dbIds = [databaseId, solarDbId];
+    const dbIds = [databaseId];
+    if (solarDbId) {
+      dbIds.push(solarDbId);
+    }
 
     for (const dbId of dbIds) {
       let cursor: string | undefined = undefined;
