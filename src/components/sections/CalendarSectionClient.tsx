@@ -8,6 +8,14 @@ import { GodData } from "@/lib/notion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function getSeason(name: string): "春季" | "夏季" | "秋季" | "冬季" | "未知" {
+  if (/(立春|雨水|驚蟄|春分|清明|穀雨)/.test(name)) return "春季";
+  if (/(立夏|小滿|芒種|夏至|小暑|大暑)/.test(name)) return "夏季";
+  if (/(立秋|處暑|白露|秋分|寒露|霜降)/.test(name)) return "秋季";
+  if (/(立冬|小雪|大雪|冬至|小寒|大寒)/.test(name)) return "冬季";
+  return "未知";
+}
+
 function SolarCard({ solar, innerRef, onSelectTag }: { solar: GodData, innerRef: (el: HTMLDivElement | null) => void, onSelectTag?: (tag: string) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -161,7 +169,7 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
   }, [solars]);
 
   // 篩選與分頁狀態
-  const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
+  const [selectedCategory, setSelectedCategory] = useState<"ALL" | "春季" | "夏季" | "秋季" | "冬季">("ALL");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -172,6 +180,9 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
 
   // 篩選邏輯
   const filteredSolars = displaySolars.filter(solar => {
+    if (selectedCategory !== "ALL" && getSeason(solar.name) !== selectedCategory) {
+      return false;
+    }
     if (selectedTag && !solar.tags.includes(selectedTag)) {
       return false;
     }
@@ -225,7 +236,7 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
         }
       );
     }
-  }, { scope: container, dependencies: [currentPage, selectedTag, searchQuery, paginatedSolars.length] });
+  }, { scope: container, dependencies: [currentPage, selectedCategory, selectedTag, searchQuery, paginatedSolars.length] });
 
   return (
     <div ref={container} className="min-h-screen flex items-center justify-center py-24 px-4 md:px-10 bg-rice relative">
@@ -240,6 +251,41 @@ export default function CalendarSectionClient({ solars }: { solars: GodData[] })
           <p className="text-ink/70 font-sans text-sm tracking-widest text-center max-w-xl">
             收錄臺灣24節氣與72候，探索歲時節令與自然運行的智慧
           </p>
+        </div>
+
+        {/* ================= 四季分類 Tabs ================= */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+          {[
+            { id: "ALL", label: "全部歲時", count: displaySolars.length, desc: "完整圖鑑" },
+            { id: "春季", label: "🌸 春季", count: displaySolars.filter(g => getSeason(g.name) === "春季").length, desc: "萬物復甦，生機萌動" },
+            { id: "夏季", label: "🍉 夏季", count: displaySolars.filter(g => getSeason(g.name) === "夏季").length, desc: "萬物生長，繁茂盈盛" },
+            { id: "秋季", label: "🍂 秋季", count: displaySolars.filter(g => getSeason(g.name) === "秋季").length, desc: "萬物收斂，成熟沉澱" },
+            { id: "冬季", label: "❄️ 冬季", count: displaySolars.filter(g => getSeason(g.name) === "冬季").length, desc: "萬物閉藏，休養生息" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => { setSelectedCategory(tab.id as any); setCurrentPage(1); }}
+              className={`group flex flex-col items-center px-6 py-3 rounded-xl font-serif tracking-widest transition-all duration-300 border shadow-sm ${
+                selectedCategory === tab.id
+                  ? "bg-vermilion text-rice border-vermilion shadow-lg scale-105 font-bold"
+                  : "bg-rice/80 text-ink/80 border-ink/20 hover:border-vermilion/80 hover:text-vermilion hover:bg-rice hover:shadow-md"
+              }`}
+            >
+              <div className="flex items-center gap-2 text-base md:text-lg">
+                <span>{tab.label}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-sans ${
+                  selectedCategory === tab.id ? "bg-rice/20 text-rice" : "bg-ink/10 text-ink/70 group-hover:bg-vermilion/10 group-hover:text-vermilion"
+                }`}>
+                  {tab.count}
+                </span>
+              </div>
+              <span className={`text-[11px] font-sans tracking-normal mt-1 opacity-80 ${
+                selectedCategory === tab.id ? "text-rice/90" : "text-ink/50"
+              }`}>
+                {tab.desc}
+              </span>
+            </button>
+          ))}
         </div>
 
         {/* ================= #tag 搜尋與篩選區域 ================= */}
