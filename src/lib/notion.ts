@@ -35,12 +35,22 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
     }
 
     for (const dbId of dbIds) {
+      let dataSourceId = dbId;
+      try {
+        const dbInfo = await notion.databases.retrieve({ database_id: dbId });
+        if (dbInfo && (dbInfo as any).data_sources && (dbInfo as any).data_sources.length > 0) {
+          dataSourceId = (dbInfo as any).data_sources[0].id;
+        }
+      } catch (err) {
+        console.warn(`Fallback: Using ${dbId} directly as data_source_id`);
+      }
+
       let cursor: string | undefined = undefined;
       let hasMore = true;
 
       while (hasMore) {
         const queryParams: any = {
-          data_source_id: dbId,
+          data_source_id: dataSourceId,
         };
         if (cursor) {
           queryParams.start_cursor = cursor;
