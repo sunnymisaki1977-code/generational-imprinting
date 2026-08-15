@@ -24,7 +24,7 @@ function GodCard({ god, innerRef, onSelectTag }: { god: GodData, innerRef: (el: 
   return (
     <div 
       ref={innerRef}
-      className="group relative transition-all duration-700 opacity-0 transform-gpu flex flex-col h-[450px] md:h-[550px] [perspective:1000px] cursor-pointer"
+      className="group relative transition-all duration-700 transform-gpu flex flex-col h-[450px] md:h-[550px] [perspective:1000px] cursor-pointer"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* 3D 容器 */}
