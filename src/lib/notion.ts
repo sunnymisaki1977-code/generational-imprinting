@@ -19,7 +19,7 @@ export interface GodData {
 
 export const getGodsData = cache(async (): Promise<GodData[]> => {
   const databaseId = process.env.NOTION_GODS_ID || process.env.NOTION_DATABASE_ID;
-  const solarDbId = process.env.NOTION_SOLAR_ID;
+  const solarDbId = process.env.NOTION_SOLAR_ID || process.env.NOTION_Solar_ID;
   
   if (!databaseId || !process.env.NOTION_API_KEY) {
     console.warn("Missing Notion API keys or Gods Database ID");
