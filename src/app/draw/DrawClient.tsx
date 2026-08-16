@@ -170,9 +170,10 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
           <button 
             onClick={handleSend}
             disabled={!isReady || isSending}
-            className="w-full py-4 bg-[#06C755] text-white rounded-xl font-sans text-lg tracking-widest font-bold hover:bg-[#05b34c] transition-colors disabled:opacity-50 shadow-lg flex items-center justify-center gap-2"
+            className="w-full py-4 bg-[#06C755] text-white rounded-xl text-2xl tracking-[0.2em] hover:bg-[#05b34c] transition-colors disabled:opacity-50 shadow-lg flex items-center justify-center gap-2"
+            style={{ fontFamily: '"Kaiti TC", "BiauKai", "楷體-繁", "標楷體", serif', fontWeight: 600 }}
           >
-            {isSending ? "發送中..." : "LINE 一鍵發送長輩圖"}
+            {isSending ? "發送中..." : "圖個幸福平安"}
           </button>
           {!isReady && (
             <p className="text-center text-xs text-ink/50 mt-2 tracking-widest">
