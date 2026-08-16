@@ -39,7 +39,7 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       const imageUrl = encodeURIComponent(drawGod.image);
       const blessing = encodeURIComponent(blessingText);
       const godName = encodeURIComponent(drawGod.name);
-      const ogUrl = `${baseUrl}/api/og/card?imageUrl=${imageUrl}&blessing=${blessing}&godName=${godName}`;
+      const ogUrl = `${baseUrl}/api/og/image.png?imageUrl=${imageUrl}&blessing=${blessing}&godName=${godName}`;
 
       await liff.shareTargetPicker([
         {

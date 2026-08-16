@@ -45,6 +45,12 @@ export async function GET(request: NextRequest) {
       return new Response('Missing imageUrl', { status: 400 });
     }
 
+    // 將相對路徑轉換為絕對路徑，因為 satori/fetch 在 Server 端不支援相對路徑
+    let absoluteImageUrl = imageUrl;
+    if (imageUrl.startsWith('/')) {
+      absoluteImageUrl = `${request.nextUrl.origin}${imageUrl}`;
+    }
+
     // 將所有需要用到的文字統整，以取得對應的字型 (只下載需要的字，省去幾十MB的下載時間)
     const allText = godName + blessing;
     
@@ -72,7 +78,7 @@ export async function GET(request: NextRequest) {
           {/* 原神明圖卡底圖 */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={imageUrl}
+            src={absoluteImageUrl}
             alt="god"
             style={{
               position: 'absolute',
