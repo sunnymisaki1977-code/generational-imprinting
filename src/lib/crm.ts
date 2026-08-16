@@ -10,9 +10,13 @@ export async function saveLineUser(userId: string, displayName?: string) {
   }
 
   try {
-    // 1. 檢查使用者是否已經存在
-    const existingUsers = await notion.databases.query({
-      database_id: crmDbId,
+    // 1. 取得 data_source_id
+    const dbInfo = await notion.databases.retrieve({ database_id: crmDbId });
+    const dataSourceId = (dbInfo as any).data_source_id || crmDbId;
+
+    // 2. 檢查使用者是否已經存在
+    const existingUsers = await (notion as any).dataSources.query({
+      data_source_id: dataSourceId,
       filter: {
         property: "userId",
         rich_text: {
@@ -70,9 +74,13 @@ export async function getAllLineUsers(): Promise<string[]> {
     let hasMore = true;
     let cursor: string | undefined = undefined;
 
+    // 1. 取得 data_source_id
+    const dbInfo = await notion.databases.retrieve({ database_id: crmDbId });
+    const dataSourceId = (dbInfo as any).data_source_id || crmDbId;
+
     while (hasMore) {
-      const response = await notion.databases.query({
-        database_id: crmDbId,
+      const response = await (notion as any).dataSources.query({
+        data_source_id: dataSourceId,
         start_cursor: cursor,
       });
 
