@@ -1,0 +1,1 @@
+const https = require('https'); https.get('https://genimpring.vercel.app/', (res) => { let data = ''; res.on('data', chunk => data += chunk); res.on('end', () => { const idx = data.indexOf('´HÅS'); console.log(data.substring(idx - 200, idx + 200)); }); });
