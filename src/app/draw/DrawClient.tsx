@@ -107,24 +107,10 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
           `}
         >
           {/* ====== 卡背 (未開封狀態) ====== */}
-          <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl overflow-hidden border-2 border-amber/50 bg-gradient-to-br from-[#2a0800] to-[#5c1c04] flex flex-col items-center justify-center">
-            {/* 卡背神秘紋理與光暈 */}
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber via-transparent to-transparent"></div>
-            
-            <div className="relative z-10 w-24 h-24 rounded-full border-2 border-amber/40 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(251,191,36,0.3)] group-hover:shadow-[0_0_50px_rgba(251,191,36,0.6)] transition-shadow duration-500">
-              <span className="text-amber font-serif text-4xl">籤</span>
-            </div>
-            
-            <p className="text-amber/80 font-serif tracking-[0.3em] text-lg">
-              世代銘印
-            </p>
-            
-            {drawState === 'sealed' && (
-              <p className="absolute bottom-10 text-white/50 font-sans tracking-widest text-sm animate-pulse">
-                - 點擊抽取您的專屬神明 -
-              </p>
-            )}
-            
+          <div 
+            className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl overflow-hidden bg-cover bg-center border border-ink/10 shadow-lg"
+            style={{ backgroundImage: "url('/Gods%20card/card.jpg')" }}
+          >
             {/* 翻牌時的高光閃爍特效 */}
             <div className={`
               absolute inset-0 bg-white z-20 pointer-events-none transition-opacity duration-700
