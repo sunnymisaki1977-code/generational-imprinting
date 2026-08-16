@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GodData } from "@/lib/notion";
-import { useLiff } from "@/components/providers/LiffProvider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -162,80 +161,6 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   }, [gods]);
 
   // 篩選與分頁狀態
-  const { liff, isReady } = useLiff();
-  const [showDrawModal, setShowDrawModal] = useState(false);
-  const [drawGod, setDrawGod] = useState<GodData | null>(null);
-  const [blessingText, setBlessingText] = useState("");
-  const [isSending, setIsSending] = useState(false);
-
-  const handleRandomDraw = () => {
-    if (displayGods.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * displayGods.length);
-    setDrawGod(displayGods[randomIndex]);
-    setBlessingText("早安！保佑平安順心");
-    setShowDrawModal(true);
-  };
-
-  const handleSendFlexMessage = async () => {
-    if (!liff || !drawGod) return;
-    if (!liff.isLoggedIn()) {
-      liff.login();
-      return;
-    }
-    setIsSending(true);
-    try {
-      await liff.shareTargetPicker([
-        {
-          type: "flex",
-          altText: "來自親友的祝福",
-          contents: {
-            type: "bubble",
-            hero: {
-              type: "image",
-              url: drawGod.image,
-              size: "full",
-              aspectRatio: "3:4",
-              aspectMode: "cover"
-            },
-            body: {
-              type: "box",
-              layout: "vertical",
-              contents: [
-                {
-                  type: "text",
-                  text: drawGod.name,
-                  weight: "bold",
-                  size: "xl",
-                  color: "#a43329"
-                },
-                {
-                  type: "text",
-                  text: drawGod.title,
-                  size: "md",
-                  color: "#171717",
-                  margin: "md"
-                },
-                {
-                  type: "text",
-                  text: blessingText,
-                  wrap: true,
-                  margin: "lg",
-                  color: "#333333"
-                }
-              ]
-            }
-          }
-        }
-      ]);
-      setShowDrawModal(false);
-      alert("發送成功！");
-    } catch (error) {
-      console.error("shareTargetPicker failed", error);
-      alert("取消傳送或發生錯誤");
-    } finally {
-      setIsSending(false);
-    }
-  };
 
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -316,19 +241,9 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
           <h2 ref={titleRef} className="text-4xl md:text-5xl font-serif text-ink text-center tracking-widest opacity-0 font-bold mb-4">
             【諸神・紀略】
           </h2>
-          <p className="text-ink/70 font-sans text-sm tracking-widest text-center max-w-xl mb-6">
+          <p className="text-ink/70 font-sans text-sm tracking-widest text-center max-w-xl">
             收錄臺灣世代信仰神仙列傳，應用儒、釋、道三教分類與主題標籤進行探索
           </p>
-
-          {isReady && (
-            <button
-              onClick={handleRandomDraw}
-              className="bg-vermilion text-rice px-6 py-3 rounded-full font-sans tracking-widest hover:bg-ink transition-colors duration-300 shadow-md flex items-center gap-2"
-            >
-              <span>🌸</span>
-              <span>抽籤問候 (長輩圖)</span>
-            </button>
-          )}
         </div>
 
         {/* ================= 儒釋道卡片分類 Tabs ================= */}
@@ -520,43 +435,6 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
           </>
         )}
       </div>
-
-      {/* 抽籤問候 Modal */}
-      {showDrawModal && drawGod && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-ink/80 backdrop-blur-sm">
-          <div className="bg-rice w-full max-w-md rounded-lg overflow-hidden flex flex-col shadow-2xl border border-ink/20">
-            <div className="h-48 bg-cover bg-center relative" style={{ backgroundImage: `url(${drawGod.image})` }}>
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent flex items-end p-4">
-                <h3 className="text-2xl font-serif text-rice tracking-widest drop-shadow-md">{drawGod.name}</h3>
-              </div>
-            </div>
-            <div className="p-6 flex flex-col gap-4">
-              <p className="text-ink/80 font-sans text-sm font-bold">神明已選定！請輸入您要傳送給親友的祝福語：</p>
-              <textarea 
-                value={blessingText}
-                onChange={(e) => setBlessingText(e.target.value)}
-                className="w-full p-3 border-2 border-ink/30 rounded-lg bg-white text-ink font-sans outline-none focus:border-vermilion transition-colors resize-none shadow-inner"
-                rows={3}
-              />
-              <div className="flex gap-3 justify-end mt-4">
-                <button 
-                  onClick={() => setShowDrawModal(false)}
-                  className="px-5 py-2 text-ink/60 hover:text-ink font-sans tracking-wider font-bold"
-                >
-                  取消
-                </button>
-                <button 
-                  onClick={handleSendFlexMessage}
-                  disabled={isSending}
-                  className="px-6 py-2 bg-[#06C755] text-white rounded-lg font-sans tracking-widest font-bold hover:bg-[#05b34c] transition-colors disabled:opacity-50 shadow-md flex items-center gap-2"
-                >
-                  {isSending ? "傳送中..." : "LINE 一鍵發送"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
