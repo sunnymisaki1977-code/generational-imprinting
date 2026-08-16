@@ -101,14 +101,14 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       >
         <div 
           className={`
-            w-full aspect-[3/4] relative transition-all duration-1000 [transform-style:preserve-3d] shadow-2xl rounded-2xl
+            w-[80%] mx-auto aspect-[9/16] max-h-[65vh] relative transition-all duration-1000 [transform-style:preserve-3d] shadow-2xl rounded-2xl
             ${drawState === 'sealed' ? 'hover:scale-105' : ''}
             ${drawState !== 'sealed' ? '[transform:rotateY(180deg)]' : ''}
           `}
         >
           {/* ====== 卡背 (未開封狀態) ====== */}
           <div 
-            className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl overflow-hidden bg-cover bg-center border border-ink/10 shadow-lg"
+            className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl overflow-hidden bg-contain bg-no-repeat bg-center bg-rice border border-ink/10 shadow-lg"
             style={{ backgroundImage: "url('/Gods%20card/card.jpg')" }}
           >
             {/* 翻牌時的高光閃爍特效 */}
@@ -120,7 +120,7 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
 
           {/* ====== 卡片正面 (神明圖像) ====== */}
           <div 
-            className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl overflow-hidden bg-cover bg-center border border-ink/10"
+            className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl overflow-hidden bg-contain bg-no-repeat bg-center bg-rice border border-ink/10"
             style={{ backgroundImage: `url(${drawGod.image})` }}
           >
             {/* 模擬 OG Image 漸層與文字 */}

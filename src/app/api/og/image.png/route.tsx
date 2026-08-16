@@ -66,12 +66,12 @@ export async function GET(request: NextRequest) {
 
     return new ImageResponse(
       (
-        <div
+          <div
           style={{
             display: 'flex',
             width: '100%',
             height: '100%',
-            backgroundColor: '#1E1E1E', // 備用背景
+            backgroundColor: '#F8F6F0', // Rice color
             position: 'relative',
           }}
         >
@@ -86,7 +86,7 @@ export async function GET(request: NextRequest) {
               left: 0,
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              objectFit: 'contain',
             }}
           />
 
@@ -127,7 +127,7 @@ export async function GET(request: NextRequest) {
       ),
       {
         width: 1080,
-        height: 1440, // 3:4 長輩圖常見比例
+        height: 1920, // 9:16 長輩圖/手機直式比例
         fonts: fontData
           ? [
               {
