@@ -41,14 +41,18 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       const godName = encodeURIComponent(drawGod.name);
       const ogUrl = `${baseUrl}/api/og/image.png?imageUrl=${imageUrl}&blessing=${blessing}&godName=${godName}`;
 
-      await liff.shareTargetPicker([
+      const res = await liff.shareTargetPicker([
         {
           type: "image",
           originalContentUrl: ogUrl,
           previewImageUrl: ogUrl,
         }
       ]);
-      alert("發送成功！");
+      
+      // 如果 res 存在，代表使用者真的有傳送出去 (沒有在選擇好友畫面按 X 取消)
+      if (res) {
+        liff.closeWindow();
+      }
     } catch (error) {
       console.error("shareTargetPicker failed", error);
       alert("取消傳送或發生錯誤");
