@@ -1,37 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLiff } from "@/components/providers/LiffProvider";
+import { YouTubeVideo } from "@/lib/youtube";
 
-// 預設播放清單 (您可以隨時在這裡更改 YouTube ID)
-const DEFAULT_PLAYLIST = [
+// 備用預設清單（以防 API 發生錯誤）
+const DEFAULT_PLAYLIST: YouTubeVideo[] = [
   {
-    id: "ep1",
-    episode: "01",
-    title: "第一回：海上的星芒",
-    description: "透過現代的旁白說書與傳統彩墨視覺的碰撞，帶您走入巷弄間，聆聽媽祖信仰的故事。",
-    // 請將這裡的 YouTube ID 換成您真實的影片 ID (例如 v= 後面那一串)
-    youtubeId: "dQw4w9WgXcQ", 
-  },
-  {
-    id: "ep2",
-    episode: "02",
-    title: "第二回：煙硝與忠義",
-    description: "關聖帝君的忠義精神是如何從三國時代流傳至今，成為商業與守護的象徵？",
-    youtubeId: "dQw4w9WgXcQ",
-  },
-  {
-    id: "ep3",
-    episode: "03",
-    title: "第三回：田埂間的守護",
-    description: "土地公伯是台灣人最親近的神明，探討其在農業社會與現代都市中的角色轉換。",
-    youtubeId: "dQw4w9WgXcQ",
+    id: "dQw4w9WgXcQ",
+    title: "歡迎來到世代銘印",
+    description: "暫時無法取得最新影片，這是一支預設影片。",
+    thumbnailUrl: "",
+    publishedAt: "",
   },
 ];
 
-export default function VideoClient() {
+export default function VideoClient({ allVideos }: { allVideos?: YouTubeVideo[] }) {
   const { isReady } = useLiff();
-  const [currentVideo, setCurrentVideo] = useState(DEFAULT_PLAYLIST[0]);
+  const [playlist, setPlaylist] = useState<YouTubeVideo[]>([]);
+  const [currentVideo, setCurrentVideo] = useState<YouTubeVideo | null>(null);
+
+  useEffect(() => {
+    // 從全部影片中隨機挑選 3 支
+    if (allVideos && allVideos.length > 0) {
+      const shuffled = [...allVideos].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 3);
+      setPlaylist(selected);
+      setCurrentVideo(selected[0]);
+    } else {
+      setPlaylist(DEFAULT_PLAYLIST);
+      setCurrentVideo(DEFAULT_PLAYLIST[0]);
+    }
+  }, [allVideos]);
+
+  if (!currentVideo) {
+    return (
+      <div className="flex-1 flex items-center justify-center font-sans tracking-widest text-rice/60 h-[100dvh] bg-ink">
+        正在為您挑選今日選集...
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 flex flex-col w-full max-w-2xl mx-auto h-[100dvh] overflow-hidden">
@@ -39,7 +47,7 @@ export default function VideoClient() {
       {/* 頂部：YouTube 播放器 */}
       <div className="w-full bg-black aspect-video relative flex-shrink-0 shadow-2xl z-20">
         <iframe
-          src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?playsinline=1&rel=0&modestbranding=1`}
+          src={`https://www.youtube.com/embed/${currentVideo.id}?playsinline=1&rel=0&modestbranding=1`}
           title={currentVideo.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -58,59 +66,60 @@ export default function VideoClient() {
       </div>
 
       {/* 底部：選集清單 (可捲動) */}
-      <div className="flex-1 overflow-y-auto bg-ink px-4 py-2">
-        <div className="flex items-center gap-3 px-2 py-4">
-          <span className="w-1 h-4 bg-vermilion inline-block"></span>
-          <h2 className="text-lg font-serif tracking-widest text-vermilion">選集清單</h2>
-        </div>
+      <div className="flex-1 overflow-y-auto bg-ink/95 px-4 py-6 scrollbar-hide pb-20">
+        <h3 className="text-sm font-sans tracking-widest text-vermilion mb-4 pl-2 font-bold flex items-center gap-2">
+          <span className="w-1.5 h-4 bg-vermilion inline-block"></span>
+          今日精選片單
+        </h3>
         
-        <ul className="space-y-2 pb-10">
-          {DEFAULT_PLAYLIST.map((video) => {
+        <div className="flex flex-col gap-3">
+          {playlist.map((video, index) => {
             const isPlaying = currentVideo.id === video.id;
-            
             return (
-              <li 
+              <button
                 key={video.id}
                 onClick={() => setCurrentVideo(video)}
                 className={`
-                  group cursor-pointer p-4 rounded-xl transition-all duration-300 flex items-start gap-4
-                  ${isPlaying ? 'bg-rice/10 border border-rice/20' : 'hover:bg-rice/5 border border-transparent'}
+                  w-full text-left p-4 rounded-xl transition-all duration-300 flex items-center gap-4 group
+                  ${isPlaying
+                    ? 'bg-rice/10 border border-rice/20 shadow-md scale-[1.02]' 
+                    : 'bg-transparent border border-transparent hover:bg-rice/5'
+                  }
                 `}
               >
-                {/* 集數標籤 */}
-                <div className={`
-                  flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full font-sans text-sm font-bold tracking-wider transition-colors
-                  ${isPlaying ? 'bg-vermilion text-rice' : 'bg-rice/10 text-rice/50 group-hover:bg-rice/20 group-hover:text-rice'}
-                `}>
-                  {video.episode}
-                </div>
-                
-                {/* 標題 */}
-                <div className="flex flex-col justify-center py-1">
-                  <h3 className={`
-                    font-serif tracking-widest transition-colors
-                    ${isPlaying ? 'text-vermilion font-bold' : 'text-rice/80 group-hover:text-rice'}
-                  `}>
-                    {video.title}
-                  </h3>
+                <div className="flex-shrink-0 relative overflow-hidden rounded border border-rice/10 w-24 aspect-video bg-black/50">
+                  {video.thumbnailUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={video.thumbnailUrl} alt={video.title} className="w-full h-full object-cover" />
+                  )}
                   {isPlaying && (
-                    <span className="text-xs text-vermilion/80 font-sans mt-1 tracking-widest flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-vermilion animate-pulse"></span>
-                      正在播放
-                    </span>
+                    <div className="absolute inset-0 bg-vermilion/80 flex items-center justify-center">
+                      <span className="text-white text-xs font-bold tracking-widest flex items-center gap-1">
+                        <span className="w-1 h-1 rounded-full bg-white animate-pulse"></span>
+                        播放中
+                      </span>
+                    </div>
                   )}
                 </div>
-              </li>
+                <div className="flex flex-col gap-1 flex-1 min-w-0">
+                  <span className={`text-xs font-serif tracking-widest ${isPlaying ? 'text-vermilion' : 'text-rice/40'}`}>
+                    第 {['一', '二', '三'][index]} 回
+                  </span>
+                  <span className={`text-sm md:text-base font-bold font-sans tracking-wider truncate ${isPlaying ? 'text-white' : 'text-rice/80 group-hover:text-white'}`}>
+                    {video.title}
+                  </span>
+                </div>
+              </button>
             );
           })}
-        </ul>
-      </div>
-
-      {!isReady && (
-        <div className="absolute inset-0 bg-ink/90 flex items-center justify-center z-50 backdrop-blur-sm">
-          <p className="text-rice/70 tracking-widest animate-pulse">載入中...</p>
         </div>
-      )}
+
+        {!isReady && (
+          <p className="text-center text-xs text-rice/30 mt-8 tracking-widest">
+            (尚未在 LINE 中開啟，部分功能可能無法運作)
+          </p>
+        )}
+      </div>
     </div>
   );
 }
