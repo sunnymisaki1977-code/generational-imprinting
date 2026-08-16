@@ -15,7 +15,7 @@ export async function saveLineUser(userId: string, displayName?: string) {
     const dataSourceId = (dbInfo as any).data_source_id || crmDbId;
 
     // 2. 檢查使用者是否已經存在
-    const existingUsers = await (notion as any).dataSources.query({
+    const existingUsers: any = await (notion as any).dataSources.query({
       data_source_id: dataSourceId,
       filter: {
         property: "userId",
@@ -79,7 +79,7 @@ export async function getAllLineUsers(): Promise<string[]> {
     const dataSourceId = (dbInfo as any).data_source_id || crmDbId;
 
     while (hasMore) {
-      const response = await (notion as any).dataSources.query({
+      const response: any = await (notion as any).dataSources.query({
         data_source_id: dataSourceId,
         start_cursor: cursor,
       });
