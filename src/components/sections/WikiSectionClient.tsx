@@ -429,6 +429,16 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
             </div>
           )}
         </div>
+
+        {/* ================= 卡片網格與結果 ================= */}
+        {displayGods.length === 0 ? (
+          <div className="text-center text-ink/50 py-20 font-sans tracking-widest">
+            正在從 Notion 載入文獻資料...
+          </div>
+        ) : filteredGods.length === 0 ? (
+          <div className="text-center py-20 bg-ink/[0.02] rounded-2xl border border-ink/10 max-w-xl mx-auto my-8 p-8">
+            <div className="text-4xl mb-4">📜</div>
+            <h3 className="text-xl font-serif text-ink font-bold mb-2 tracking-wider">查無神明文獻</h3>
             <p className="text-ink/60 font-sans text-sm tracking-widest mb-6 leading-relaxed">
               目前「{selectedCategory !== "ALL" ? selectedCategory : ""}」分類或「{selectedTag ? `#${selectedTag}` : searchQuery}」條件下沒有對應的神明卡片。
             </p>
