@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import DrawClient from "./DrawClient";
 
-export const revalidate = 600;
+export const revalidate = false;
 
 export default async function DrawPage() {
   // 不讀取 Notion，改為從 public/Wish Card 資料夾讀取所有圖檔

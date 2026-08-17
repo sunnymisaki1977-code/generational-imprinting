@@ -6,7 +6,7 @@ import CalendarSection from "@/components/sections/CalendarSection";
 import LiteratureSection from "@/components/sections/LiteratureSection";
 import MapSection from "@/components/sections/MapSection";
 
-export const revalidate = 600; // 每 10 分鐘 (600 秒) 在背景重新驗證/抓取資料一次
+export const revalidate = false; // 永久不自動更新
 
 export default function Home() {
   return (

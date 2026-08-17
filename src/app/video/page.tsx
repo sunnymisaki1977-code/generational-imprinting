@@ -5,7 +5,7 @@ export const metadata = {
   title: "說書影音劇院 | 世代銘印",
 };
 
-export const revalidate = 3600; // 1小時重新生成一次
+export const revalidate = false;
 
 export default async function VideoPage() {
   // 抓取兩個不同的播放清單

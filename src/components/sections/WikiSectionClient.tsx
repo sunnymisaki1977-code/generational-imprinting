@@ -165,8 +165,6 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | "儒" | "釋" | "道">("ALL");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const cardsPerPage = 12;
 
   // 提取所有不重複標籤
   const allTags = Array.from(new Set(displayGods.flatMap(g => g.tags))).filter(Boolean);
@@ -192,10 +190,6 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
     return true;
   });
 
-  // 分頁邏輯
-  const totalPages = Math.ceil(filteredGods.length / cardsPerPage) || 1;
-  const paginatedGods = filteredGods.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage);
-
   useGSAP(() => {
     // Title reveal
     gsap.fromTo(titleRef.current, 
@@ -214,7 +208,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
 
   // 當切換分頁或篩選時，為當前頁面的卡片播放進場動畫
   useGSAP(() => {
-    const activeCards = cardsRef.current.slice(0, paginatedGods.length).filter(Boolean);
+    const activeCards = cardsRef.current.slice(0, filteredGods.length).filter(Boolean);
     if (activeCards.length > 0) {
       gsap.fromTo(activeCards,
         { opacity: 0, y: 50, scale: 0.96 },
@@ -229,7 +223,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
         }
       );
     }
-  }, { scope: container, dependencies: [currentPage, selectedCategory, selectedTag, searchQuery, paginatedGods.length] });
+  }, { scope: container, dependencies: [selectedCategory, selectedTag, searchQuery, filteredGods.length] });
 
   return (
     <div ref={container} className="min-h-screen flex items-center justify-center py-24 px-4 md:px-10 bg-rice relative">
@@ -256,7 +250,7 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => { setSelectedCategory(tab.id as any); setCurrentPage(1); }}
+              onClick={() => { setSelectedCategory(tab.id as any); }}
               className={`group flex flex-col items-center px-6 py-3 rounded-xl font-serif tracking-widest transition-all duration-300 border shadow-sm ${
                 selectedCategory === tab.id
                   ? "bg-vermilion text-rice border-vermilion shadow-lg scale-105 font-bold"
@@ -290,13 +284,13 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              onChange={(e) => { setSearchQuery(e.target.value); }}
               placeholder="搜尋神明尊號、文獻事蹟或 #標籤 (例如：武財神、文昌、保平安、除瘟)..."
               className="w-full pl-12 pr-24 py-3.5 rounded-xl bg-rice border-2 border-ink/20 focus:border-vermilion text-ink placeholder-ink/40 font-sans text-sm md:text-base tracking-wider focus:outline-none transition-all shadow-sm"
             />
             {(searchQuery || selectedTag || selectedCategory !== "ALL") && (
               <button
-                onClick={() => { setSearchQuery(""); setSelectedTag(null); setSelectedCategory("ALL"); setCurrentPage(1); }}
+                onClick={() => { setSearchQuery(""); setSelectedTag(null); setSelectedCategory("ALL"); }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-sans text-vermilion hover:bg-vermilion hover:text-rice tracking-widest bg-vermilion/10 px-3 py-1.5 rounded-lg transition-colors font-bold"
               >
                 重置全部 ✕
@@ -316,7 +310,6 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
                   key={idx}
                   onClick={() => {
                     setSelectedTag(selectedTag === tag ? null : tag);
-                    setCurrentPage(1);
                   }}
                   className={`text-xs font-sans tracking-widest px-3 py-1 rounded-full transition-all duration-200 border flex items-center gap-1 ${
                     selectedTag === tag
@@ -358,81 +351,52 @@ export default function WikiSectionClient({ gods }: { gods: GodData[] }) {
               目前「{selectedCategory !== "ALL" ? selectedCategory : ""}」分類或「{selectedTag ? `#${selectedTag}` : searchQuery}」條件下沒有對應的神明卡片。
             </p>
             <button
-              onClick={() => { setSelectedCategory("ALL"); setSelectedTag(null); setSearchQuery(""); setCurrentPage(1); }}
+              onClick={() => { setSelectedCategory("ALL"); setSelectedTag(null); setSearchQuery(""); }}
               className="px-6 py-2.5 bg-vermilion text-rice rounded-lg font-serif text-sm tracking-widest hover:bg-vermilion/90 transition-all shadow-md font-bold"
             >
               顯示全部神明 ({displayGods.length} 尊)
             </button>
           </div>
         ) : (
-          <>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12 min-h-[550px]">
-              {paginatedGods.map((god, i) => (
-                <GodCard 
-                  key={god.id} 
-                  god={god} 
-                  innerRef={(el) => { cardsRef.current[i] = el; }}
-                  onSelectTag={(tag) => {
-                    setSelectedTag(tag);
-                    setCurrentPage(1);
-                    container.current?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                />
+          <div className="relative w-full max-w-7xl mx-auto px-4 md:px-12 group">
+            {/* Left Button */}
+            <button 
+              onClick={() => {
+                const el = document.getElementById('wiki-carousel');
+                if (el) el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
+              }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/80 hover:bg-vermilion hover:text-white rounded-full flex items-center justify-center text-ink shadow-lg border border-ink/10 transition-all z-20 opacity-80 group-hover:opacity-100"
+            >
+              <span className="font-serif text-xl md:text-2xl font-bold -ml-1">←</span>
+            </button>
+            
+            {/* Carousel Container */}
+            <div id="wiki-carousel" className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide gap-6 md:gap-8 pb-10 min-h-[550px]">
+              {filteredGods.map((god, i) => (
+                <div key={god.id} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] shrink-0 snap-start">
+                  <GodCard 
+                    god={god} 
+                    innerRef={(el) => { cardsRef.current[i] = el; }}
+                    onSelectTag={(tag) => {
+                      setSelectedTag(tag);
+                      container.current?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  />
+                </div>
               ))}
             </div>
 
-            {/* ================= 分頁導覽按鈕 (Pagination) ================= */}
-            {totalPages > 1 && (
-              <div className="mt-16 pt-8 border-t border-ink/10 flex flex-col items-center gap-6">
-                <div className="text-xs font-sans text-ink/60 tracking-widest bg-ink/5 px-4 py-1.5 rounded-full border border-ink/10">
-                  顯示第 {(currentPage - 1) * cardsPerPage + 1} - {Math.min(currentPage * cardsPerPage, filteredGods.length)} 尊，共 {filteredGods.length} 尊神明 (第 {currentPage} / {totalPages} 頁)
-                </div>
-                
-                <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center">
-                  <button
-                    disabled={currentPage === 1}
-                    onClick={() => {
-                      setCurrentPage(prev => Math.max(1, prev - 1));
-                      container.current?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="px-5 py-2.5 rounded-xl border-2 border-ink/20 text-ink text-sm font-serif tracking-widest disabled:opacity-30 disabled:cursor-not-allowed hover:border-vermilion hover:text-vermilion hover:bg-vermilion/5 transition-all bg-rice font-bold shadow-sm"
-                  >
-                    &lt; 上一頁
-                  </button>
-                  
-                  <div className="flex items-center gap-1.5">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                      <button
-                        key={page}
-                        onClick={() => {
-                          setCurrentPage(page);
-                          container.current?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className={`w-11 h-11 rounded-xl font-serif text-base flex items-center justify-center transition-all duration-200 border ${
-                          currentPage === page
-                            ? "bg-vermilion text-rice font-bold shadow-lg scale-110 border-vermilion"
-                            : "bg-rice text-ink hover:border-vermilion hover:text-vermilion border-ink/20 shadow-sm"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    disabled={currentPage === totalPages}
-                    onClick={() => {
-                      setCurrentPage(prev => Math.min(totalPages, prev + 1));
-                      container.current?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="px-5 py-2.5 rounded-xl border-2 border-ink/20 text-ink text-sm font-serif tracking-widest disabled:opacity-30 disabled:cursor-not-allowed hover:border-vermilion hover:text-vermilion hover:bg-vermilion/5 transition-all bg-rice font-bold shadow-sm"
-                  >
-                    下一頁 &gt;
-                  </button>
-                </div>
-              </div>
-            )}
-          </>
+            {/* Right Button */}
+            <button 
+              onClick={() => {
+                const el = document.getElementById('wiki-carousel');
+                if (el) el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
+              }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/80 hover:bg-vermilion hover:text-white rounded-full flex items-center justify-center text-ink shadow-lg border border-ink/10 transition-all z-20 opacity-80 group-hover:opacity-100"
+            >
+              <span className="font-serif text-xl md:text-2xl font-bold -mr-1">→</span>
+            </button>
+          </div>
         )}
       </div>
     </div>
