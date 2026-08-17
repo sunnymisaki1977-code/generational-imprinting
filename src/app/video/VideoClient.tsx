@@ -15,15 +15,20 @@ const DEFAULT_PLAYLIST: YouTubeVideo[] = [
   },
 ];
 
-export default function VideoClient({ allVideos }: { allVideos?: YouTubeVideo[] }) {
+type ViewMode = "adult" | "kids";
+
+export default function VideoClient({ adultVideos, kidsVideos }: { adultVideos?: YouTubeVideo[], kidsVideos?: YouTubeVideo[] }) {
   const { isReady } = useLiff();
+  const [viewMode, setViewMode] = useState<ViewMode>("adult");
   const [playlist, setPlaylist] = useState<YouTubeVideo[]>([]);
   const [currentVideo, setCurrentVideo] = useState<YouTubeVideo | null>(null);
 
+  // 當 viewMode 改變時，重新抽取並設定該版本的隨機片單
   useEffect(() => {
-    // 從全部影片中隨機挑選 3 支
-    if (allVideos && allVideos.length > 0) {
-      const shuffled = [...allVideos].sort(() => 0.5 - Math.random());
+    const sourceVideos = viewMode === "adult" ? adultVideos : kidsVideos;
+    
+    if (sourceVideos && sourceVideos.length > 0) {
+      const shuffled = [...sourceVideos].sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, 3);
       setPlaylist(selected);
       setCurrentVideo(selected[0]);
@@ -31,7 +36,7 @@ export default function VideoClient({ allVideos }: { allVideos?: YouTubeVideo[] 
       setPlaylist(DEFAULT_PLAYLIST);
       setCurrentVideo(DEFAULT_PLAYLIST[0]);
     }
-  }, [allVideos]);
+  }, [viewMode, adultVideos, kidsVideos]);
 
   if (!currentVideo) {
     return (
@@ -42,7 +47,7 @@ export default function VideoClient({ allVideos }: { allVideos?: YouTubeVideo[] 
   }
 
   return (
-    <div className="flex-1 flex flex-col w-full max-w-2xl mx-auto h-[100dvh] overflow-hidden">
+    <div className="flex-1 flex flex-col w-full max-w-2xl mx-auto h-[100dvh] overflow-hidden bg-ink">
       
       {/* 頂部：YouTube 播放器 */}
       <div className="w-full bg-black aspect-video relative flex-shrink-0 shadow-2xl z-20">
@@ -65,8 +70,35 @@ export default function VideoClient({ allVideos }: { allVideos?: YouTubeVideo[] 
         </p>
       </div>
 
-      {/* 底部：選集清單 (可捲動) */}
-      <div className="flex-1 overflow-y-auto bg-ink/95 px-4 py-6 scrollbar-hide pb-20">
+      {/* 底部：分眾頁籤與選集清單 */}
+      <div className="flex-1 overflow-y-auto bg-ink/95 px-4 py-4 scrollbar-hide pb-20">
+        
+        {/* 切換按鈕 (Tabs) */}
+        <div className="flex p-1 bg-rice/5 rounded-xl mb-6 relative">
+          <button
+            onClick={() => setViewMode("adult")}
+            className={`flex-1 py-3 text-sm font-sans tracking-widest font-bold rounded-lg transition-all duration-300 z-10 ${
+              viewMode === "adult" ? "text-ink shadow-sm" : "text-rice/50 hover:text-rice/80"
+            }`}
+          >
+            大人版
+          </button>
+          <button
+            onClick={() => setViewMode("kids")}
+            className={`flex-1 py-3 text-sm font-sans tracking-widest font-bold rounded-lg transition-all duration-300 z-10 ${
+              viewMode === "kids" ? "text-ink shadow-sm" : "text-rice/50 hover:text-rice/80"
+            }`}
+          >
+            小朋友
+          </button>
+          {/* 滑動背景標籤 */}
+          <div 
+            className={`absolute top-1 bottom-1 w-[calc(50%-4px)] bg-rice rounded-lg transition-all duration-300 shadow-sm ease-out ${
+              viewMode === "adult" ? "left-1" : "left-[calc(50%+2px)]"
+            }`}
+          ></div>
+        </div>
+
         <h3 className="text-sm font-sans tracking-widest text-vermilion mb-4 pl-2 font-bold flex items-center gap-2">
           <span className="w-1.5 h-4 bg-vermilion inline-block"></span>
           今日精選片單

@@ -8,21 +8,27 @@ export interface YouTubeVideo {
   publishedAt: string;
 }
 
-export const getYoutubeVideos = cache(async (): Promise<YouTubeVideo[]> => {
+export const getYoutubeVideos = cache(async (playlistId?: string): Promise<YouTubeVideo[]> => {
   const apiKey = process.env.YOUTUBE_API_KEY;
   const channelId = process.env.YOUTUBE_CHANNEL_ID;
 
-  if (!apiKey || !channelId) {
+  if (!apiKey) {
     console.warn("Missing YouTube API keys");
     return [];
   }
 
-  // 將頻道 ID (UC...) 轉換為上傳播放清單 ID (UU...)
-  // 這是取得頻道所有影片最節省 Quota 的方式
-  const uploadsPlaylistId = channelId.replace(/^UC/, "UU");
+  // 如果沒有傳入 playlistId，預設使用頻道的上傳播放清單
+  let targetPlaylistId = playlistId;
+  if (!targetPlaylistId) {
+    if (!channelId) {
+       console.warn("Missing YouTube Channel ID");
+       return [];
+    }
+    targetPlaylistId = channelId.replace(/^UC/, "UU");
+  }
 
   try {
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=50&key=${apiKey}`;
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${targetPlaylistId}&maxResults=50&key=${apiKey}`;
     const response = await fetch(url, { next: { revalidate: 3600 } }); // 快取 1 小時
 
     if (!response.ok) {
@@ -41,7 +47,7 @@ export const getYoutubeVideos = cache(async (): Promise<YouTubeVideo[]> => {
       publishedAt: item.snippet.publishedAt,
     }));
   } catch (error) {
-    console.error("Error fetching YouTube videos:", error);
+    console.error(`Error fetching YouTube videos for playlist ${targetPlaylistId}:`, error);
     return [];
   }
 });

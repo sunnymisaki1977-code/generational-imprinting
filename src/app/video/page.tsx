@@ -8,12 +8,16 @@ export const metadata = {
 export const revalidate = 3600; // 1小時重新生成一次
 
 export default async function VideoPage() {
-  const allVideos = await getYoutubeVideos();
+  // 抓取兩個不同的播放清單
+  const [adultVideos, kidsVideos] = await Promise.all([
+    getYoutubeVideos("PLAvQkft9FbPU"), // 大人版
+    getYoutubeVideos("PLBzrfvnms1-o")  // 小朋友版
+  ]);
 
   return (
     <main className="min-h-screen bg-ink flex flex-col relative font-sans text-rice selection:bg-amber selection:text-ink">
       <div className="absolute top-0 left-0 w-full h-1 bg-vermilion z-10" />
-      <VideoClient allVideos={allVideos} />
+      <VideoClient adultVideos={adultVideos} kidsVideos={kidsVideos} />
     </main>
   );
 }
