@@ -121,7 +121,7 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
           {/* ====== 卡片正面 (神明圖像) ====== */}
           <div 
             className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl overflow-hidden bg-contain bg-no-repeat bg-center bg-rice border border-ink/10"
-            style={{ backgroundImage: `url(${drawGod.image})` }}
+            style={{ backgroundImage: `url("${drawGod.image}")` }}
           >
             {/* 模擬 OG Image 漸層與文字 */}
             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
