@@ -10,14 +10,31 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
   const [blessingText, setBlessingText] = useState("早安！保佑平安順心");
   const [isSending, setIsSending] = useState(false);
   
-  // 抽卡狀態：sealed(未開封), flipping(翻牌中), revealed(已揭曉)
   const [drawState, setDrawState] = useState<'sealed' | 'flipping' | 'revealed'>('sealed');
+  
+  // 轉發次數限制
+  const DAILY_SHARE_LIMIT = 3;
+  const [shareCount, setShareCount] = useState(0);
 
   useEffect(() => {
     // 初始載入時，先在背景隨機挑選一尊，但不翻開
     if (gods.length > 0) {
       const randomIndex = Math.floor(Math.random() * gods.length);
       setDrawGod(gods[randomIndex]);
+    }
+    
+    // 讀取今日轉發次數
+    const today = new Date().toISOString().split('T')[0];
+    const storedData = localStorage.getItem('draw_share_count');
+    if (storedData) {
+      const { date, count } = JSON.parse(storedData);
+      if (date === today) {
+        setShareCount(count);
+      } else {
+        localStorage.setItem('draw_share_count', JSON.stringify({ date: today, count: 0 }));
+      }
+    } else {
+      localStorage.setItem('draw_share_count', JSON.stringify({ date: today, count: 0 }));
     }
   }, [gods]);
 
@@ -46,6 +63,12 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
 
   const handleSend = async () => {
     if (!liff || !drawGod) return;
+    
+    if (shareCount >= DAILY_SHARE_LIMIT) {
+      alert(`您今日的發送次數已達上限 (${DAILY_SHARE_LIMIT}次)\n請明日再來或邀請好友一起來抽卡！`);
+      return;
+    }
+
     if (!liff.isLoggedIn()) {
       liff.login();
       return;
@@ -68,6 +91,12 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       ]);
       
       if (res) {
+        // 發送成功，紀錄次數
+        const today = new Date().toISOString().split('T')[0];
+        const newCount = shareCount + 1;
+        setShareCount(newCount);
+        localStorage.setItem('draw_share_count', JSON.stringify({ date: today, count: newCount }));
+        
         liff.closeWindow();
       }
     } catch (error) {
@@ -75,6 +104,32 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       alert("取消傳送或發生錯誤");
     } finally {
       setIsSending(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!drawGod) return;
+    try {
+      const baseUrl = window.location.origin;
+      const imageUrl = encodeURIComponent(drawGod.image);
+      const blessing = encodeURIComponent(blessingText);
+      const godName = encodeURIComponent(drawGod.name);
+      const ogUrl = `${baseUrl}/api/og/image.png?imageUrl=${imageUrl}&blessing=${blessing}&godName=${godName}`;
+      
+      alert("正在為您產生並下載圖片，請稍候...");
+      const response = await fetch(ogUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${drawGod.name}祝福卡.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download failed", error);
+      alert("下載失敗，請稍後再試");
     }
   };
 
@@ -166,20 +221,38 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
           />
         </div>
 
-        <div className="w-full mt-8 mb-12">
+        <div className="w-full mt-6 mb-8 flex flex-col gap-4">
           <button 
             onClick={handleSend}
-            disabled={!isReady || isSending}
-            className="w-full py-4 bg-[#06C755] text-white rounded-xl text-2xl tracking-[0.2em] hover:bg-[#05b34c] transition-colors disabled:opacity-50 shadow-lg flex items-center justify-center gap-2"
+            disabled={!isReady || isSending || shareCount >= DAILY_SHARE_LIMIT}
+            className="w-full py-4 bg-[#06C755] text-white rounded-xl text-2xl tracking-[0.2em] hover:bg-[#05b34c] transition-colors disabled:opacity-50 shadow-lg flex flex-col items-center justify-center gap-1"
             style={{ fontFamily: '"Kaiti TC", "BiauKai", "楷體-繁", "標楷體", serif', fontWeight: 600 }}
           >
             {isSending ? "發送中..." : "圖個幸福平安"}
+            <span className="text-sm font-sans tracking-widest font-normal opacity-90">
+              (今日剩餘: {Math.max(0, DAILY_SHARE_LIMIT - shareCount)} 次)
+            </span>
           </button>
+          
+          <button 
+            onClick={handleDownload}
+            className="w-full py-3 bg-white text-ink border-2 border-ink/20 rounded-xl text-lg tracking-widest hover:bg-ink/5 transition-colors shadow-sm flex items-center justify-center gap-2 font-bold"
+          >
+            📥 下載圖片
+          </button>
+
           {!isReady && (
             <p className="text-center text-xs text-ink/50 mt-2 tracking-widest">
               正在初始化 LINE 環境...
             </p>
           )}
+
+          {/* 加入好友 / 社群連結 */}
+          <div className="mt-6 flex justify-center w-full">
+            <a href="https://lin.ee/TeZAAAe" target="_blank" rel="noopener noreferrer">
+              <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" className="border-0" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
