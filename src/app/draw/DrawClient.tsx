@@ -97,6 +97,7 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
               aspectMode: "cover",
               action: {
                 type: "uri",
+                label: "點我加入好友",
                 uri: "https://lin.ee/wbNd43W"
               }
             },
