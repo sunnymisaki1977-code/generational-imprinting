@@ -82,11 +82,42 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
       const godName = encodeURIComponent(drawGod.name);
       const ogUrl = `${baseUrl}/api/og/image.png?imageUrl=${imageUrl}&blessing=${blessing}&godName=${godName}`;
 
+      // 改用 Flex Message，這樣收到圖卡的人就可以看到「加入好友」的按鈕
       const res = await liff.shareTargetPicker([
         {
-          type: "image",
-          originalContentUrl: ogUrl,
-          previewImageUrl: ogUrl,
+          type: "flex",
+          altText: `收到來自 ${drawGod.name} 的祝福！`,
+          contents: {
+            type: "bubble",
+            hero: {
+              type: "image",
+              url: ogUrl,
+              size: "full",
+              aspectRatio: "9:16",
+              aspectMode: "cover",
+              action: {
+                type: "uri",
+                uri: "https://lin.ee/wbNd43W"
+              }
+            },
+            footer: {
+              type: "box",
+              layout: "vertical",
+              spacing: "sm",
+              contents: [
+                {
+                  type: "button",
+                  style: "primary",
+                  color: "#06C755",
+                  action: {
+                    type: "uri",
+                    label: "點我加入好友/自己抽卡",
+                    uri: "https://lin.ee/wbNd43W"
+                  }
+                }
+              ]
+            }
+          }
         }
       ]);
       
@@ -246,13 +277,6 @@ export default function DrawClient({ gods }: { gods: GodData[] }) {
               正在初始化 LINE 環境...
             </p>
           )}
-
-          {/* 加入好友 / 社群連結 */}
-          <div className="mt-6 flex justify-center w-full">
-            <a href="https://lin.ee/TeZAAAe" target="_blank" rel="noopener noreferrer">
-              <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" className="border-0" />
-            </a>
-          </div>
         </div>
       </div>
     </div>
