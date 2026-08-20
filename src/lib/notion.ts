@@ -14,7 +14,8 @@ export interface GodData {
   tags: string[];
   image: string;
   poem?: string;
-  category: "儒" | "釋" | "道" | "歲時";
+  birthday?: string;
+  category: "儒" | "釋" | "道" | "歲時" | "ALL";
 }
 
 export const getGodsData = cache(async (): Promise<GodData[]> => {
@@ -93,7 +94,17 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
       let tags: string[] = [];
       let poem = "";
       let isPromptSection = false;
-      let imageUrl = "";
+      let birthday = "";
+
+      // 嘗試讀取 Notion 上的「聖誕日期」或「Birthday」屬性
+      const dateProp = page.properties['聖誕日期'] || page.properties['Birthday'];
+      if (dateProp) {
+        if (dateProp.type === 'rich_text' && dateProp.rich_text.length > 0) {
+          birthday = dateProp.rich_text[0].plain_text;
+        } else if (dateProp.type === 'date' && dateProp.date) {
+          birthday = dateProp.date.start;
+        }
+      }
 
       for (const block of blocks) {
         if (!('type' in block)) continue;
@@ -149,7 +160,7 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
       }
 
       // 分類邏輯 (儒、釋、道、歲時)
-      let category: "儒" | "釋" | "道" | "歲時" = "道"; // 預設為道教與民間信仰
+      let category: "儒" | "釋" | "道" | "歲時" | "ALL" = "道"; // 預設為道教與民間信仰
       const textToMatch = `${name} ${title} ${tags.join(" ")} ${desc}`.toLowerCase();
       const strictTextToMatch = `${name} ${title} ${tags.join(" ")}`.toLowerCase();
       
@@ -177,6 +188,7 @@ export const getGodsData = cache(async (): Promise<GodData[]> => {
         image: defaultImage,
         poem: poem || "神威顯赫",
         category,
+        birthday: birthday || undefined,
       });
     }
 
