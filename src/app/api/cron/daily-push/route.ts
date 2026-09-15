@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { messagingApi } from "@line/bot-sdk";
 import { getAllLineUsers } from "@/lib/crm";
-import { getGodsData, GodData } from "@/lib/notion";
+import { godBirthdays } from "@/lib/birthdays";
+import { GodData } from "@/lib/notion";
 // @ts-ignore
 import { Solar, Lunar } from "lunar-javascript";
+
 
 const channelAccessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN || "";
 const client = new messagingApi.MessagingApiClient({
@@ -86,17 +88,33 @@ export async function GET(request: Request) {
 
     const todayHou = getHouExactDay(todayLunar, today);
 
-    // 2. 讀取所有資料
-    const allData = await getGodsData();
-    
-    // 找出符合的資料
-    const todayGods = allData.filter(d => d.birthday && (d.birthday.includes(todayLunarStr) || d.birthday.includes(`${todayLunar.getMonth()}月${todayLunar.getDay()}日`)));
-    const futureGods = allData.filter(d => d.birthday && (d.birthday.includes(futureLunarStr) || d.birthday.includes(`${futureLunar.getMonth()}月${futureLunar.getDay()}日`)));
-    
-    let todaySolarCard = todayJieQi ? allData.find(d => d.name === todayJieQi) : null;
-    const futureSolarCard = futureJieQi ? allData.find(d => d.name === futureJieQi) : null;
+    // 2. 使用靜態的農曆神明生日表
+    const todayGodNames = godBirthdays[todayLunarStr] || [];
+    const futureGodNames = godBirthdays[futureLunarStr] || [];
 
-    if (todayJieQi && !todaySolarCard) {
+    // 產生對應的虛擬卡片物件，稍後會透過 HEAD 請求確認圖卡是否存在
+    const todayGods = todayGodNames.map(name => ({
+      id: 'virtual',
+      name,
+      title: '',
+      desc: '',
+      tags: [],
+      image: `/Wish%20Card/${encodeURIComponent(name)}.png`,
+      category: '道' as any
+    }));
+
+    const futureGods = futureGodNames.map(name => ({
+      id: 'virtual',
+      name,
+      title: '',
+      desc: '',
+      tags: [],
+      image: `/Wish%20Card/${encodeURIComponent(name)}.png`,
+      category: '道' as any
+    }));
+    
+    let todaySolarCard = null;
+    if (todayJieQi) {
       todaySolarCard = {
         id: 'virtual',
         name: todayJieQi,
@@ -112,22 +130,15 @@ export async function GET(request: Request) {
     let todayHouCard = null;
     if (todayHou) {
       const houName = `${todayHou.jieQi}${todayHou.hou}${todayHou.wuHou}`;
-      todayHouCard = allData.find(d => 
-        d.name.includes(todayHou.jieQi) && 
-        d.name.includes(todayHou.hou)
-      );
-      // 如果 Notion 沒有建檔，但我們預期 public 內可能有這張圖卡，可以直接生成虛擬卡片物件
-      if (!todayHouCard) {
-        todayHouCard = {
-          id: 'virtual',
-          name: houName,
-          title: '',
-          desc: '',
-          tags: [],
-          image: `/Solar%20card/${encodeURIComponent(houName)}.png`,
-          category: '歲時' as any
-        };
-      }
+      todayHouCard = {
+        id: 'virtual',
+        name: houName,
+        title: '',
+        desc: '',
+        tags: [],
+        image: `/Solar%20card/${encodeURIComponent(houName)}.png`,
+        category: '歲時' as any
+      };
     }
 
     let pushedMessages = [];
@@ -218,7 +229,7 @@ async function createImageMessage(data: GodData) {
   }
   
   return {
-    type: "image",
+    type: "image" as any,
     originalContentUrl: imageUrl,
     previewImageUrl: imageUrl
   };
