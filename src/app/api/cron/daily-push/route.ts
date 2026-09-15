@@ -93,17 +93,41 @@ export async function GET(request: Request) {
     const todayGods = allData.filter(d => d.birthday && (d.birthday.includes(todayLunarStr) || d.birthday.includes(`${todayLunar.getMonth()}月${todayLunar.getDay()}日`)));
     const futureGods = allData.filter(d => d.birthday && (d.birthday.includes(futureLunarStr) || d.birthday.includes(`${futureLunar.getMonth()}月${futureLunar.getDay()}日`)));
     
-    const todaySolarCard = todayJieQi ? allData.find(d => d.name === todayJieQi) : null;
+    let todaySolarCard = todayJieQi ? allData.find(d => d.name === todayJieQi) : null;
     const futureSolarCard = futureJieQi ? allData.find(d => d.name === futureJieQi) : null;
+
+    if (todayJieQi && !todaySolarCard) {
+      todaySolarCard = {
+        id: 'virtual',
+        name: todayJieQi,
+        title: '',
+        desc: '',
+        tags: [],
+        image: `/Solar%20card/${encodeURIComponent(todayJieQi)}.png`,
+        category: '歲時' as any
+      };
+    }
     
     // 尋找對應的「候」卡片 (例如: 白露三候群鳥養羞)
     let todayHouCard = null;
     if (todayHou) {
-      // 尋找名稱包含 JieQi 和 Hou 的卡片
+      const houName = `${todayHou.jieQi}${todayHou.hou}${todayHou.wuHou}`;
       todayHouCard = allData.find(d => 
         d.name.includes(todayHou.jieQi) && 
         d.name.includes(todayHou.hou)
       );
+      // 如果 Notion 沒有建檔，但我們預期 public 內可能有這張圖卡，可以直接生成虛擬卡片物件
+      if (!todayHouCard) {
+        todayHouCard = {
+          id: 'virtual',
+          name: houName,
+          title: '',
+          desc: '',
+          tags: [],
+          image: `/Solar%20card/${encodeURIComponent(houName)}.png`,
+          category: '歲時' as any
+        };
+      }
     }
 
     let pushedMessages = [];
@@ -135,13 +159,16 @@ export async function GET(request: Request) {
       const multicastMessages = [];
       
       if (todaySolarCard) {
-        multicastMessages.push(createFlexMessage(todaySolarCard, "節氣圖卡"));
+        const msg = await createImageMessage(todaySolarCard);
+        if (msg) multicastMessages.push(msg);
       }
       if (todayHouCard) {
-        multicastMessages.push(createFlexMessage(todayHouCard, "七十二候圖卡"));
+        const msg = await createImageMessage(todayHouCard);
+        if (msg) multicastMessages.push(msg);
       }
       for (const god of todayGods) {
-        multicastMessages.push(createFlexMessage(god, "神諭圖卡"));
+        const msg = await createImageMessage(god);
+        if (msg) multicastMessages.push(msg);
       }
 
       if (multicastMessages.length > 0) {
@@ -172,57 +199,27 @@ export async function GET(request: Request) {
   }
 }
 
-// 產生精美的 Flex Message 卡片
-function createFlexMessage(data: GodData, cardType: string) {
+// 產生純圖卡推播訊息，並驗證網址是否存在
+async function createImageMessage(data: GodData) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://genimpring.vercel.app";
   // 如果圖片是相對路徑，補上 baseUrl
   const imageUrl = data.image.startsWith("http") ? data.image : `${baseUrl}${data.image}`;
   
-  return {
-    type: "flex",
-    altText: `收到專屬的${cardType}：${data.name}`,
-    contents: {
-      type: "bubble",
-      hero: {
-        type: "image",
-        url: imageUrl,
-        size: "full",
-        aspectRatio: "9:16",
-        aspectMode: "cover",
-        action: {
-          type: "uri",
-          label: "查看詳情",
-          uri: `${baseUrl}/gods`
-        }
-      },
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: `【會員專屬${cardType}】`,
-            color: "#06C755",
-            weight: "bold",
-            size: "sm"
-          },
-          {
-            type: "text",
-            text: data.name,
-            weight: "bold",
-            size: "xl",
-            color: "#a43329",
-            margin: "md"
-          },
-          {
-            type: "text",
-            text: data.poem || data.title,
-            size: "md",
-            color: "#171717",
-            margin: "sm"
-          }
-        ]
-      }
+  try {
+    // 預先檢查圖片是否存在，避免推播破圖給信眾
+    const res = await fetch(imageUrl, { method: "HEAD" });
+    if (!res.ok) {
+      console.warn(`[Image Check Failed] HTTP ${res.status}: ${imageUrl}`);
+      return null;
     }
+  } catch (error) {
+    console.warn(`[Image Check Error] ${imageUrl}`, error);
+    return null;
+  }
+  
+  return {
+    type: "image",
+    originalContentUrl: imageUrl,
+    previewImageUrl: imageUrl
   };
 }
