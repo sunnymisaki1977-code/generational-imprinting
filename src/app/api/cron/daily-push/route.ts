@@ -12,10 +12,13 @@ const client = new messagingApi.MessagingApiClient({
 
 export const revalidate = 0; // Disable cache for this route
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const dateParam = searchParams.get('date');
+
     // 1. 計算日期 (今天 & 三天後)
-    const today = new Date();
+    const today = dateParam ? new Date(dateParam) : new Date();
     const todaySolar = Solar.fromDate(today);
     const todayLunar = Lunar.fromDate(today);
     
@@ -52,6 +55,37 @@ export async function GET() {
     const todayJieQi = getJieQiExactDay(todaySolar, todayLunar);
     const futureJieQi = getJieQiExactDay(futureSolar, futureLunar);
 
+    // 檢查今天是否為某個「候 (微氣候)」的第一天
+    const getHouExactDay = (lunar: typeof Lunar, date: Date) => {
+      const prevDate = new Date(date);
+      prevDate.setDate(date.getDate() - 1);
+      const prevLunar = Lunar.fromDate(prevDate);
+      
+      const currentHou = lunar.getHou();
+      const prevHou = prevLunar.getHou();
+      
+      // 如果今天的「候」跟昨天不同，代表今天是這個「候」的第一天
+      if (currentHou && currentHou !== prevHou) {
+        // lunar.getHou() 格式例如 "白露 三候"
+        // lunar.getWuHou() 格式例如 "群鸟养羞"
+        // 將簡體轉繁體，例如 "白露三候群鳥養羞" (暫時透過字串取代或假設 Notion 檔名完全吻合)
+        const jieQi = lunar.getPrevJieQi().getName(); // "白露"
+        const houParts = currentHou.split(' '); // ["白露", "三候"]
+        const houNum = houParts.length > 1 ? houParts[1] : ""; // "三候"
+        const wuHou = lunar.getWuHou(); // "群鸟养羞"
+        
+        // 嘗試組合出卡片名稱，包含簡體與繁體版本方便比對
+        return {
+          jieQi: tradJieQiMap[jieQi] || jieQi,
+          hou: houNum,
+          wuHou: wuHou // 如果系統是簡體，這裡要看檔案命名
+        };
+      }
+      return null;
+    };
+
+    const todayHou = getHouExactDay(todayLunar, today);
+
     // 2. 讀取所有資料
     const allData = await getGodsData();
     
@@ -61,6 +95,16 @@ export async function GET() {
     
     const todaySolarCard = todayJieQi ? allData.find(d => d.name === todayJieQi) : null;
     const futureSolarCard = futureJieQi ? allData.find(d => d.name === futureJieQi) : null;
+    
+    // 尋找對應的「候」卡片 (例如: 白露三候群鳥養羞)
+    let todayHouCard = null;
+    if (todayHou) {
+      // 尋找名稱包含 JieQi 和 Hou 的卡片
+      todayHouCard = allData.find(d => 
+        d.name.includes(todayHou.jieQi) && 
+        d.name.includes(todayHou.hou)
+      );
+    }
 
     let pushedMessages = [];
 
@@ -92,6 +136,9 @@ export async function GET() {
       
       if (todaySolarCard) {
         multicastMessages.push(createFlexMessage(todaySolarCard, "節氣圖卡"));
+      }
+      if (todayHouCard) {
+        multicastMessages.push(createFlexMessage(todayHouCard, "七十二候圖卡"));
       }
       for (const god of todayGods) {
         multicastMessages.push(createFlexMessage(god, "神諭圖卡"));
