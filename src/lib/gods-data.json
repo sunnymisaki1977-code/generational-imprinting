@@ -1,1 +1,2222 @@
-[]
+[
+  {
+    "id": "mock1",
+    "name": "關聖帝君",
+    "title": "忠義雙全的武財神",
+    "desc": "追溯關羽從三國歷史人物至民間信仰的造神軌跡...",
+    "tags": [
+      "武財神",
+      "忠義",
+      "三國"
+    ],
+    "image": "/Gods%20card/%E9%97%9C%E8%81%96%E5%B8%9D%E5%90%9B.png",
+    "poem": "春秋大義千秋頌，忠義神武佑蒼生。",
+    "category": "神明"
+  },
+  {
+    "id": "mock2",
+    "name": "玉皇上帝",
+    "title": "天界與人間的最高威信",
+    "desc": "探討民眾對於天界最高主宰的崇敬...",
+    "tags": [
+      "天公",
+      "最高",
+      "主宰"
+    ],
+    "image": "",
+    "poem": "統御萬神主造化，恩光普照護群生。",
+    "category": "神明"
+  },
+  {
+    "id": "mock3",
+    "name": "五殿閻羅王",
+    "title": "掌管生死與冥界判官",
+    "desc": "深入地府十殿閻羅的歷史與傳說...",
+    "tags": [
+      "冥界",
+      "審判",
+      "輪迴"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E6%AE%BF%E9%96%BB%E7%BE%85%E7%8E%8B.png",
+    "poem": "鐵面無私判善惡，森羅殿上法幽明。",
+    "category": "神明"
+  },
+  {
+    "id": "mock4",
+    "name": "上元賜福天官大帝",
+    "title": "三官大帝之首",
+    "desc": "解析三官信仰與道教天界宇宙觀...",
+    "tags": [
+      "天官",
+      "賜福",
+      "三界"
+    ],
+    "image": "",
+    "poem": "賜福消災恩澤厚，上元佳節紫微宮。",
+    "category": "神明"
+  },
+  {
+    "id": "mock5",
+    "name": "五年千歲羅千歲",
+    "title": "代天巡狩的威權信仰",
+    "desc": "探討王爺信仰中五年一科的祭典儀式...",
+    "tags": [
+      "王爺",
+      "千歲",
+      "代天巡狩"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E7%BE%85%E5%8D%83%E6%AD%B2.png",
+    "poem": "代天巡狩威名顯，五年一科保泰平。",
+    "category": "神明"
+  },
+  {
+    "id": "mock6",
+    "name": "元始天尊",
+    "title": "道教最高神明",
+    "desc": "追溯三清尊神之首的起源...",
+    "tags": [
+      "三清",
+      "道教",
+      "創世"
+    ],
+    "image": "/Gods%20card/%E5%85%83%E5%A7%8B%E5%A4%A9%E5%B0%8A.png",
+    "poem": "混沌初判尊無極，太極含靈化萬生。",
+    "category": "神明"
+  },
+  {
+    "id": "mock7",
+    "name": "孫天醫真人",
+    "title": "藥王孫思邈",
+    "desc": "從歷史名醫到民間神明的造神過程...",
+    "tags": [
+      "醫神",
+      "藥王",
+      "治病"
+    ],
+    "image": "/Gods%20card/%E5%AD%AB%E5%A4%A9%E9%86%AB%E7%9C%9F%E4%BA%BA.png",
+    "poem": "妙手回春除百病，千金要方濟群生。",
+    "category": "神明"
+  },
+  {
+    "id": "mock8",
+    "name": "彌勒尊佛",
+    "title": "未來佛與歡喜象徵",
+    "desc": "追溯彌勒信仰在漢傳佛教中的演變...",
+    "tags": [
+      "佛教",
+      "未來佛",
+      "歡喜"
+    ],
+    "image": "/Gods%20card/%E5%BD%8C%E5%8B%92%E5%B0%8A%E4%BD%9B.png",
+    "poem": "大肚能容天下事，笑口常開度群迷。",
+    "category": "神明"
+  },
+  {
+    "id": "mock9",
+    "name": "武德尊侯沈世紀",
+    "title": "唐代開漳功臣沈氏宗親守護神",
+    "desc": "沈世紀，為唐代開漳功臣...",
+    "tags": [
+      "開漳功臣",
+      "血緣神明",
+      "沈氏宗親"
+    ],
+    "image": "",
+    "poem": "武德威彰護閩南，德馨遠播祖風傳。",
+    "category": "神明"
+  },
+  {
+    "id": "mock10",
+    "name": "清水祖師",
+    "title": "求雨與除瘟的祈雨神",
+    "desc": "從北宋禪師至福建安溪人的守護神...",
+    "tags": [
+      "高僧",
+      "祈雨",
+      "除瘟"
+    ],
+    "image": "/Gods%20card/%E6%B8%85%E6%B0%B4%E7%A5%96%E5%B8%AB.png",
+    "poem": "落鼻示警顯神威，黑面祖師鎮蓬萊。",
+    "category": "神明"
+  },
+  {
+    "id": "mock11",
+    "name": "臨水夫人陳靖姑",
+    "title": "婦幼與安產的守護神",
+    "desc": "探討傳統社會中婦幼醫療匱乏時的救贖信仰...",
+    "tags": [
+      "婦幼",
+      "安產",
+      "閭山"
+    ],
+    "image": "",
+    "poem": "斬蛇除妖保產婦，護國佑民顯神威。",
+    "category": "神明"
+  },
+  {
+    "id": "mock12",
+    "name": "門神戶尉",
+    "title": "守護家宅的辟邪神",
+    "desc": "從神荼鬱壘到秦瓊敬德，探討門神信仰...",
+    "tags": [
+      "門神",
+      "辟邪",
+      "家宅"
+    ],
+    "image": "/Gods%20card/%E9%96%80%E7%A5%9E%E6%88%B6%E5%B0%89.png",
+    "poem": "威武雙鐧護朱門，鎮宅驅邪保平安。",
+    "category": "神明"
+  },
+  {
+    "id": "local_card",
+    "name": "card",
+    "title": "card",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/card.jpg",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_一殿秦廣王",
+    "name": "一殿秦廣王",
+    "title": "一殿秦廣王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%80%E6%AE%BF%E7%A7%A6%E5%BB%A3%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_七俱胝佛母大準提菩薩",
+    "name": "七俱胝佛母大準提菩薩",
+    "title": "七俱胝佛母大準提菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%83%E4%BF%B1%E8%83%9D%E4%BD%9B%E6%AF%8D%E5%A4%A7%E6%BA%96%E6%8F%90%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_七星娘娘",
+    "name": "七星娘娘",
+    "title": "七星娘娘",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%83%E6%98%9F%E5%A8%98%E5%A8%98.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_七殿泰山王",
+    "name": "七殿泰山王",
+    "title": "七殿泰山王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%83%E6%AE%BF%E6%B3%B0%E5%B1%B1%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_三天主考王",
+    "name": "三天主考王",
+    "title": "三天主考王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%89%E5%A4%A9%E4%B8%BB%E8%80%83%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_三天主考王 ",
+    "name": "三天主考王 ",
+    "title": "三天主考王 ",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%89%E5%A4%A9%E4%B8%BB%E8%80%83%E7%8E%8B%20.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_三山國王",
+    "name": "三山國王",
+    "title": "三山國王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%89%E5%B1%B1%E5%9C%8B%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_三殿宋帝王",
+    "name": "三殿宋帝王",
+    "title": "三殿宋帝王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%89%E6%AE%BF%E5%AE%8B%E5%B8%9D%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_上元一品賜福天官紫微大帝",
+    "name": "上元一品賜福天官紫微大帝",
+    "title": "上元一品賜福天官紫微大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%8A%E5%85%83%E4%B8%80%E5%93%81%E8%B3%9C%E7%A6%8F%E5%A4%A9%E5%AE%98%E7%B4%AB%E5%BE%AE%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_中元地官大帝",
+    "name": "中元地官大帝",
+    "title": "中元地官大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%AD%E5%85%83%E5%9C%B0%E5%AE%98%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_中路財神趙元帥",
+    "name": "中路財神趙元帥",
+    "title": "中路財神趙元帥",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B8%AD%E8%B7%AF%E8%B2%A1%E7%A5%9E%E8%B6%99%E5%85%83%E5%B8%A5.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天司命灶君",
+    "name": "九天司命灶君",
+    "title": "九天司命灶君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E5%8F%B8%E5%91%BD%E7%81%B6%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天應元雷聲普化天尊",
+    "name": "九天應元雷聲普化天尊",
+    "title": "九天應元雷聲普化天尊",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E6%87%89%E5%85%83%E9%9B%B7%E8%81%B2%E6%99%AE%E5%8C%96%E5%A4%A9%E5%B0%8A.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天應元雷聲普化天尊雷祖大帝",
+    "name": "九天應元雷聲普化天尊雷祖大帝",
+    "title": "九天應元雷聲普化天尊雷祖大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E6%87%89%E5%85%83%E9%9B%B7%E8%81%B2%E6%99%AE%E5%8C%96%E5%A4%A9%E5%B0%8A%E9%9B%B7%E7%A5%96%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天玄女",
+    "name": "九天玄女",
+    "title": "九天玄女",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E7%8E%84%E5%A5%B3.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天風火院田都元帥雷大尉",
+    "name": "九天風火院田都元帥雷大尉",
+    "title": "九天風火院田都元帥雷大尉",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E9%A2%A8%E7%81%AB%E9%99%A2%E7%94%B0%E9%83%BD%E5%85%83%E5%B8%A5%E9%9B%B7%E5%A4%A7%E5%B0%89.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_九天馬恩師",
+    "name": "九天馬恩師",
+    "title": "九天馬恩師",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%B9%9D%E5%A4%A9%E9%A6%AC%E6%81%A9%E5%B8%AB.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_二殿楚江王",
+    "name": "二殿楚江王",
+    "title": "二殿楚江王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%8C%E6%AE%BF%E6%A5%9A%E6%B1%9F%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_二郎元帥",
+    "name": "二郎元帥",
+    "title": "二郎元帥",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%8C%E9%83%8E%E5%85%83%E5%B8%A5.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲吳千歲",
+    "name": "五年千歲吳千歲",
+    "title": "五年千歲吳千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E5%90%B3%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲封千歲",
+    "name": "五年千歲封千歲",
+    "title": "五年千歲封千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E5%B0%81%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲張千歲",
+    "name": "五年千歲張千歲",
+    "title": "五年千歲張千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E5%BC%B5%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲徐千歲",
+    "name": "五年千歲徐千歲",
+    "title": "五年千歲徐千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E5%BE%90%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲耿千歲",
+    "name": "五年千歲耿千歲",
+    "title": "五年千歲耿千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E8%80%BF%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲薛千歲",
+    "name": "五年千歲薛千歲",
+    "title": "五年千歲薛千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E8%96%9B%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五年千歲趙千歲",
+    "name": "五年千歲趙千歲",
+    "title": "五年千歲趙千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E5%B9%B4%E5%8D%83%E6%AD%B2%E8%B6%99%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_五福大帝",
+    "name": "五福大帝",
+    "title": "五福大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BA%94%E7%A6%8F%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_保儀尊王",
+    "name": "保儀尊王",
+    "title": "保儀尊王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BF%9D%E5%84%80%E5%B0%8A%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_保生大帝",
+    "name": "保生大帝",
+    "title": "保生大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E4%BF%9D%E7%94%9F%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_倉頡先師",
+    "name": "倉頡先師",
+    "title": "倉頡先師",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%80%89%E9%A0%A1%E5%85%88%E5%B8%AB.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_值年太歲星君",
+    "name": "值年太歲星君",
+    "title": "值年太歲星君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%80%BC%E5%B9%B4%E5%A4%AA%E6%AD%B2%E6%98%9F%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_先天主將王靈官天君",
+    "name": "先天主將王靈官天君",
+    "title": "先天主將王靈官天君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%85%88%E5%A4%A9%E4%B8%BB%E5%B0%87%E7%8E%8B%E9%9D%88%E5%AE%98%E5%A4%A9%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_先天豁落靈官王天君",
+    "name": "先天豁落靈官王天君",
+    "title": "先天豁落靈官王天君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%85%88%E5%A4%A9%E8%B1%81%E8%90%BD%E9%9D%88%E5%AE%98%E7%8E%8B%E5%A4%A9%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_六殿卞城王",
+    "name": "六殿卞城王",
+    "title": "六殿卞城王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%85%AD%E6%AE%BF%E5%8D%9E%E5%9F%8E%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_北極玄天上帝",
+    "name": "北極玄天上帝",
+    "title": "北極玄天上帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8C%97%E6%A5%B5%E7%8E%84%E5%A4%A9%E4%B8%8A%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南天廖將軍",
+    "name": "南天廖將軍",
+    "title": "南天廖將軍",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E5%A4%A9%E5%BB%96%E5%B0%87%E8%BB%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南宮柳星君",
+    "name": "南宮柳星君",
+    "title": "南宮柳星君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E5%AE%AE%E6%9F%B3%E6%98%9F%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南宮趙真君",
+    "name": "南宮趙真君",
+    "title": "南宮趙真君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E5%AE%AE%E8%B6%99%E7%9C%9F%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南極大帝",
+    "name": "南極大帝",
+    "title": "南極大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E6%A5%B5%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南極長生大帝",
+    "name": "南極長生大帝",
+    "title": "南極長生大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E6%A5%B5%E9%95%B7%E7%94%9F%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_南極長生帝君",
+    "name": "南極長生帝君",
+    "title": "南極長生帝君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%8D%97%E6%A5%B5%E9%95%B7%E7%94%9F%E5%B8%9D%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_后土皇地祇",
+    "name": "后土皇地祇",
+    "title": "后土皇地祇",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%90%8E%E5%9C%9F%E7%9A%87%E5%9C%B0%E7%A5%87.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_四殿五官王",
+    "name": "四殿五官王",
+    "title": "四殿五官王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%9B%9B%E6%AE%BF%E4%BA%94%E5%AE%98%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_土穀尊神",
+    "name": "土穀尊神",
+    "title": "土穀尊神",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%9C%9F%E7%A9%80%E5%B0%8A%E7%A5%9E.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_地藏王菩薩",
+    "name": "地藏王菩薩",
+    "title": "地藏王菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%9C%B0%E8%97%8F%E7%8E%8B%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_城隍夫人",
+    "name": "城隍夫人",
+    "title": "城隍夫人",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%9F%8E%E9%9A%8D%E5%A4%AB%E4%BA%BA.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_大勢至菩薩",
+    "name": "大勢至菩薩",
+    "title": "大勢至菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%A7%E5%8B%A2%E8%87%B3%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_大成魁星夫子",
+    "name": "大成魁星夫子",
+    "title": "大成魁星夫子",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%A7%E6%88%90%E9%AD%81%E6%98%9F%E5%A4%AB%E5%AD%90.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_天上聖母",
+    "name": "天上聖母",
+    "title": "天上聖母",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%A9%E4%B8%8A%E8%81%96%E6%AF%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_天然古佛",
+    "name": "天然古佛",
+    "title": "天然古佛",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%A9%E7%84%B6%E5%8F%A4%E4%BD%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_太上老君",
+    "name": "太上老君",
+    "title": "太上老君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%AA%E4%B8%8A%E8%80%81%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_太陽星君",
+    "name": "太陽星君",
+    "title": "太陽星君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A4%AA%E9%99%BD%E6%98%9F%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_姜太公姜子牙",
+    "name": "姜太公姜子牙",
+    "title": "姜太公姜子牙",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A7%9C%E5%A4%AA%E5%85%AC%E5%A7%9C%E5%AD%90%E7%89%99.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_姜相子牙",
+    "name": "姜相子牙",
+    "title": "姜相子牙",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%A7%9C%E7%9B%B8%E5%AD%90%E7%89%99.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_岳武穆王",
+    "name": "岳武穆王",
+    "title": "岳武穆王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%B2%B3%E6%AD%A6%E7%A9%86%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_巧聖先師魯班公",
+    "name": "巧聖先師魯班公",
+    "title": "巧聖先師魯班公",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%B7%A7%E8%81%96%E5%85%88%E5%B8%AB%E9%AD%AF%E7%8F%AD%E5%85%AC.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_幽冥教主地藏王菩薩",
+    "name": "幽冥教主地藏王菩薩",
+    "title": "幽冥教主地藏王菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%B9%BD%E5%86%A5%E6%95%99%E4%B8%BB%E5%9C%B0%E8%97%8F%E7%8E%8B%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_康府千歲",
+    "name": "康府千歲",
+    "title": "康府千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%BA%B7%E5%BA%9C%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_張府天師",
+    "name": "張府天師",
+    "title": "張府天師",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E5%BC%B5%E5%BA%9C%E5%A4%A9%E5%B8%AB.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_文昌帝君",
+    "name": "文昌帝君",
+    "title": "文昌帝君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%96%87%E6%98%8C%E5%B8%9D%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_日月指揮大使",
+    "name": "日月指揮大使",
+    "title": "日月指揮大使",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%97%A5%E6%9C%88%E6%8C%87%E6%8F%AE%E5%A4%A7%E4%BD%BF.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_普庵菩薩",
+    "name": "普庵菩薩",
+    "title": "普庵菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%99%AE%E5%BA%B5%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_普賢菩薩",
+    "name": "普賢菩薩",
+    "title": "普賢菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%99%AE%E8%B3%A2%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_東嶽大帝",
+    "name": "東嶽大帝",
+    "title": "東嶽大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%9D%B1%E5%B6%BD%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_武德侯沈祖公",
+    "name": "武德侯沈祖公",
+    "title": "武德侯沈祖公",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%AD%A6%E5%BE%B7%E4%BE%AF%E6%B2%88%E7%A5%96%E5%85%AC.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_武德尊侯沈祖公",
+    "name": "武德尊侯沈祖公",
+    "title": "武德尊侯沈祖公",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%AD%A6%E5%BE%B7%E5%B0%8A%E4%BE%AF%E6%B2%88%E7%A5%96%E5%85%AC.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_清源妙道真君二郎元帥",
+    "name": "清源妙道真君二郎元帥",
+    "title": "清源妙道真君二郎元帥",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%B8%85%E6%BA%90%E5%A6%99%E9%81%93%E7%9C%9F%E5%90%9B%E4%BA%8C%E9%83%8E%E5%85%83%E5%B8%A5.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_濟公活佛",
+    "name": "濟公活佛",
+    "title": "濟公活佛",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E6%BF%9F%E5%85%AC%E6%B4%BB%E4%BD%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_無極老母",
+    "name": "無極老母",
+    "title": "無極老母",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%84%A1%E6%A5%B5%E8%80%81%E6%AF%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_玉皇大天尊玄穹高上帝",
+    "name": "玉皇大天尊玄穹高上帝",
+    "title": "玉皇大天尊玄穹高上帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%8E%89%E7%9A%87%E5%A4%A7%E5%A4%A9%E5%B0%8A%E7%8E%84%E7%A9%B9%E9%AB%98%E4%B8%8A%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_王靈天君豁落靈官王善",
+    "name": "王靈天君豁落靈官王善",
+    "title": "王靈天君豁落靈官王善",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%8E%8B%E9%9D%88%E5%A4%A9%E5%90%9B%E8%B1%81%E8%90%BD%E9%9D%88%E5%AE%98%E7%8E%8B%E5%96%84.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_瑤池金母大天尊",
+    "name": "瑤池金母大天尊",
+    "title": "瑤池金母大天尊",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%91%A4%E6%B1%A0%E9%87%91%E6%AF%8D%E5%A4%A7%E5%A4%A9%E5%B0%8A.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_田都元帥",
+    "name": "田都元帥",
+    "title": "田都元帥",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%94%B0%E9%83%BD%E5%85%83%E5%B8%A5.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_申國夫人",
+    "name": "申國夫人",
+    "title": "申國夫人",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%94%B3%E5%9C%8B%E5%A4%AB%E4%BA%BA.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_盧府千歲",
+    "name": "盧府千歲",
+    "title": "盧府千歲",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%9B%A7%E5%BA%9C%E5%8D%83%E6%AD%B2.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_福德正神",
+    "name": "福德正神",
+    "title": "福德正神",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E7%A6%8F%E5%BE%B7%E6%AD%A3%E7%A5%9E.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_至聖先師孔子",
+    "name": "至聖先師孔子",
+    "title": "至聖先師孔子",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%87%B3%E8%81%96%E5%85%88%E5%B8%AB%E5%AD%94%E5%AD%90.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_至聖先師孔子 ",
+    "name": "至聖先師孔子 ",
+    "title": "至聖先師孔子 ",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%87%B3%E8%81%96%E5%85%88%E5%B8%AB%E5%AD%94%E5%AD%90%20.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_蕭府王爺",
+    "name": "蕭府王爺",
+    "title": "蕭府王爺",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%95%AD%E5%BA%9C%E7%8E%8B%E7%88%BA.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_虎爺公",
+    "name": "虎爺公",
+    "title": "虎爺公",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%99%8E%E7%88%BA%E5%85%AC.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_虎爺將軍下壇元帥",
+    "name": "虎爺將軍下壇元帥",
+    "title": "虎爺將軍下壇元帥",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%99%8E%E7%88%BA%E5%B0%87%E8%BB%8D%E4%B8%8B%E5%A3%87%E5%85%83%E5%B8%A5.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_衛房聖母",
+    "name": "衛房聖母",
+    "title": "衛房聖母",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%A1%9B%E6%88%BF%E8%81%96%E6%AF%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_西秦王爺",
+    "name": "西秦王爺",
+    "title": "西秦王爺",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%A5%BF%E7%A7%A6%E7%8E%8B%E7%88%BA.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_觀世音菩薩",
+    "name": "觀世音菩薩",
+    "title": "觀世音菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%A7%80%E4%B8%96%E9%9F%B3%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_觀音佛祖大慈大悲救苦救難觀世音菩薩",
+    "name": "觀音佛祖大慈大悲救苦救難觀世音菩薩",
+    "title": "觀音佛祖大慈大悲救苦救難觀世音菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%A7%80%E9%9F%B3%E4%BD%9B%E7%A5%96%E5%A4%A7%E6%85%88%E5%A4%A7%E6%82%B2%E6%95%91%E8%8B%A6%E6%95%91%E9%9B%A3%E8%A7%80%E4%B8%96%E9%9F%B3%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_註生娘娘",
+    "name": "註生娘娘",
+    "title": "註生娘娘",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%A8%BB%E7%94%9F%E5%A8%98%E5%A8%98.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_諸葛武侯",
+    "name": "諸葛武侯",
+    "title": "諸葛武侯",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E8%AB%B8%E8%91%9B%E6%AD%A6%E4%BE%AF.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_都天豁落王靈官王靈天君",
+    "name": "都天豁落王靈官王靈天君",
+    "title": "都天豁落王靈官王靈天君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%83%BD%E5%A4%A9%E8%B1%81%E8%90%BD%E7%8E%8B%E9%9D%88%E5%AE%98%E7%8E%8B%E9%9D%88%E5%A4%A9%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_都府城隍",
+    "name": "都府城隍",
+    "title": "都府城隍",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%83%BD%E5%BA%9C%E5%9F%8E%E9%9A%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_鄭延平郡王",
+    "name": "鄭延平郡王",
+    "title": "鄭延平郡王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%84%AD%E5%BB%B6%E5%B9%B3%E9%83%A1%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_開漳聖王",
+    "name": "開漳聖王",
+    "title": "開漳聖王",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%96%8B%E6%BC%B3%E8%81%96%E7%8E%8B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_關平帝君",
+    "name": "關平帝君",
+    "title": "關平帝君",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%97%9C%E5%B9%B3%E5%B8%9D%E5%90%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_雷都光耀大帝",
+    "name": "雷都光耀大帝",
+    "title": "雷都光耀大帝",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%9B%B7%E9%83%BD%E5%85%89%E8%80%80%E5%A4%A7%E5%B8%9D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_霞海城隍",
+    "name": "霞海城隍",
+    "title": "霞海城隍",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%9C%9E%E6%B5%B7%E5%9F%8E%E9%9A%8D.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_韋馱尊佛",
+    "name": "韋馱尊佛",
+    "title": "韋馱尊佛",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%9F%8B%E9%A6%B1%E5%B0%8A%E4%BD%9B.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_韋馱尊天菩薩",
+    "name": "韋馱尊天菩薩",
+    "title": "韋馱尊天菩薩",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%9F%8B%E9%A6%B1%E5%B0%8A%E5%A4%A9%E8%8F%A9%E8%96%A9.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_順天聖母臨水夫人陳靖姑",
+    "name": "順天聖母臨水夫人陳靖姑",
+    "title": "順天聖母臨水夫人陳靖姑",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%A0%86%E5%A4%A9%E8%81%96%E6%AF%8D%E8%87%A8%E6%B0%B4%E5%A4%AB%E4%BA%BA%E9%99%B3%E9%9D%96%E5%A7%91.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_鬼谷先師王禪老祖",
+    "name": "鬼谷先師王禪老祖",
+    "title": "鬼谷先師王禪老祖",
+    "desc": "民間信仰神明",
+    "tags": [
+      "神明"
+    ],
+    "image": "/Gods%20card/%E9%AC%BC%E8%B0%B7%E5%85%88%E5%B8%AB%E7%8E%8B%E7%A6%AA%E8%80%81%E7%A5%96.png",
+    "poem": "神威顯赫",
+    "category": "神明"
+  },
+  {
+    "id": "local_冬至一候蚯蚓結",
+    "name": "冬至一候蚯蚓結",
+    "title": "冬至一候蚯蚓結",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%86%AC%E8%87%B3%E4%B8%80%E5%80%99%E8%9A%AF%E8%9A%93%E7%B5%90%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_冬至三候水泉動",
+    "name": "冬至三候水泉動",
+    "title": "冬至三候水泉動",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%86%AC%E8%87%B3%E4%B8%89%E5%80%99%E6%B0%B4%E6%B3%89%E5%8B%95%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_冬至二候麋角解",
+    "name": "冬至二候麋角解",
+    "title": "冬至二候麋角解",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%86%AC%E8%87%B3%E4%BA%8C%E5%80%99%E9%BA%8B%E8%A7%92%E8%A7%A3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_夏至一候鹿角解",
+    "name": "夏至一候鹿角解",
+    "title": "夏至一候鹿角解",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%8F%E8%87%B3%E4%B8%80%E5%80%99%E9%B9%BF%E8%A7%92%E8%A7%A3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_夏至三候半夏生",
+    "name": "夏至三候半夏生",
+    "title": "夏至三候半夏生",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%8F%E8%87%B3%E4%B8%89%E5%80%99%E5%8D%8A%E5%A4%8F%E7%94%9F%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_夏至二候蟬始鳴",
+    "name": "夏至二候蟬始鳴",
+    "title": "夏至二候蟬始鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%8F%E8%87%B3%E4%BA%8C%E5%80%99%E8%9F%AC%E5%A7%8B%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大寒一候雞乳",
+    "name": "大寒一候雞乳",
+    "title": "大寒一候雞乳",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E5%AF%92%E4%B8%80%E5%80%99%E9%9B%9E%E4%B9%B3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大寒三候水澤腹堅",
+    "name": "大寒三候水澤腹堅",
+    "title": "大寒三候水澤腹堅",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E5%AF%92%E4%B8%89%E5%80%99%E6%B0%B4%E6%BE%A4%E8%85%B9%E5%A0%85%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大寒二候征鳥厲疾",
+    "name": "大寒二候征鳥厲疾",
+    "title": "大寒二候征鳥厲疾",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E5%AF%92%E4%BA%8C%E5%80%99%E5%BE%81%E9%B3%A5%E5%8E%B2%E7%96%BE%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大暑一候腐草為螢",
+    "name": "大暑一候腐草為螢",
+    "title": "大暑一候腐草為螢",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E6%9A%91%E4%B8%80%E5%80%99%E8%85%90%E8%8D%89%E7%82%BA%E8%9E%A2%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大暑三候大雨時行",
+    "name": "大暑三候大雨時行",
+    "title": "大暑三候大雨時行",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E6%9A%91%E4%B8%89%E5%80%99%E5%A4%A7%E9%9B%A8%E6%99%82%E8%A1%8C%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大暑二候土潤溽暑",
+    "name": "大暑二候土潤溽暑",
+    "title": "大暑二候土潤溽暑",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E6%9A%91%E4%BA%8C%E5%80%99%E5%9C%9F%E6%BD%A4%E6%BA%BD%E6%9A%91%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大雪一候鶡鴠不鳴",
+    "name": "大雪一候鶡鴠不鳴",
+    "title": "大雪一候鶡鴠不鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E9%9B%AA%E4%B8%80%E5%80%99%E9%B6%A1%E9%B4%A0%E4%B8%8D%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大雪三候荔挺出",
+    "name": "大雪三候荔挺出",
+    "title": "大雪三候荔挺出",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E9%9B%AA%E4%B8%89%E5%80%99%E8%8D%94%E6%8C%BA%E5%87%BA%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_大雪二候虎始交",
+    "name": "大雪二候虎始交",
+    "title": "大雪二候虎始交",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%A4%A7%E9%9B%AA%E4%BA%8C%E5%80%99%E8%99%8E%E5%A7%8B%E4%BA%A4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_寒露一候鴻雁來賓",
+    "name": "寒露一候鴻雁來賓",
+    "title": "寒露一候鴻雁來賓",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%AF%92%E9%9C%B2%E4%B8%80%E5%80%99%E9%B4%BB%E9%9B%81%E4%BE%86%E8%B3%93%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_寒露三候菊有黃華",
+    "name": "寒露三候菊有黃華",
+    "title": "寒露三候菊有黃華",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%AF%92%E9%9C%B2%E4%B8%89%E5%80%99%E8%8F%8A%E6%9C%89%E9%BB%83%E8%8F%AF%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_寒露二候雀入大水為蛤",
+    "name": "寒露二候雀入大水為蛤",
+    "title": "寒露二候雀入大水為蛤",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%AF%92%E9%9C%B2%E4%BA%8C%E5%80%99%E9%9B%80%E5%85%A5%E5%A4%A7%E6%B0%B4%E7%82%BA%E8%9B%A4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小寒一候雁北鄉",
+    "name": "小寒一候雁北鄉",
+    "title": "小寒一候雁北鄉",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E5%AF%92%E4%B8%80%E5%80%99%E9%9B%81%E5%8C%97%E9%84%89%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小寒三候雉雊",
+    "name": "小寒三候雉雊",
+    "title": "小寒三候雉雊",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E5%AF%92%E4%B8%89%E5%80%99%E9%9B%89%E9%9B%8A%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小寒二候鵲始巢",
+    "name": "小寒二候鵲始巢",
+    "title": "小寒二候鵲始巢",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E5%AF%92%E4%BA%8C%E5%80%99%E9%B5%B2%E5%A7%8B%E5%B7%A2%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小暑一候溫風至",
+    "name": "小暑一候溫風至",
+    "title": "小暑一候溫風至",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%9A%91%E4%B8%80%E5%80%99%E6%BA%AB%E9%A2%A8%E8%87%B3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小暑三候鷹始鷙",
+    "name": "小暑三候鷹始鷙",
+    "title": "小暑三候鷹始鷙",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%9A%91%E4%B8%89%E5%80%99%E9%B7%B9%E5%A7%8B%E9%B7%99%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小暑二候蟋蟀居宇",
+    "name": "小暑二候蟋蟀居宇",
+    "title": "小暑二候蟋蟀居宇",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%9A%91%E4%BA%8C%E5%80%99%E8%9F%8B%E8%9F%80%E5%B1%85%E5%AE%87%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小滿一候苦菜秀",
+    "name": "小滿一候苦菜秀",
+    "title": "小滿一候苦菜秀",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%BB%BF%E4%B8%80%E5%80%99%E8%8B%A6%E8%8F%9C%E7%A7%80%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小滿三候麥秋至",
+    "name": "小滿三候麥秋至",
+    "title": "小滿三候麥秋至",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%BB%BF%E4%B8%89%E5%80%99%E9%BA%A5%E7%A7%8B%E8%87%B3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小滿二候靡草死",
+    "name": "小滿二候靡草死",
+    "title": "小滿二候靡草死",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E6%BB%BF%E4%BA%8C%E5%80%99%E9%9D%A1%E8%8D%89%E6%AD%BB%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小雪一候虹藏不見",
+    "name": "小雪一候虹藏不見",
+    "title": "小雪一候虹藏不見",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E9%9B%AA%E4%B8%80%E5%80%99%E8%99%B9%E8%97%8F%E4%B8%8D%E8%A6%8B%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小雪三候閉塞而成冬",
+    "name": "小雪三候閉塞而成冬",
+    "title": "小雪三候閉塞而成冬",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E9%9B%AA%E4%B8%89%E5%80%99%E9%96%89%E5%A1%9E%E8%80%8C%E6%88%90%E5%86%AC%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_小雪二候天氣上升地氣下降",
+    "name": "小雪二候天氣上升地氣下降",
+    "title": "小雪二候天氣上升地氣下降",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E5%B0%8F%E9%9B%AA%E4%BA%8C%E5%80%99%E5%A4%A9%E6%B0%A3%E4%B8%8A%E5%8D%87%E5%9C%B0%E6%B0%A3%E4%B8%8B%E9%99%8D%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_春分一候玄鳥至",
+    "name": "春分一候玄鳥至",
+    "title": "春分一候玄鳥至",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%98%A5%E5%88%86%E4%B8%80%E5%80%99%E7%8E%84%E9%B3%A5%E8%87%B3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_春分三候始電",
+    "name": "春分三候始電",
+    "title": "春分三候始電",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%98%A5%E5%88%86%E4%B8%89%E5%80%99%E5%A7%8B%E9%9B%BB%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_春分二候雷乃發聲",
+    "name": "春分二候雷乃發聲",
+    "title": "春分二候雷乃發聲",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%98%A5%E5%88%86%E4%BA%8C%E5%80%99%E9%9B%B7%E4%B9%83%E7%99%BC%E8%81%B2%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_清明一候桐始華",
+    "name": "清明一候桐始華",
+    "title": "清明一候桐始華",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%B8%85%E6%98%8E%E4%B8%80%E5%80%99%E6%A1%90%E5%A7%8B%E8%8F%AF%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_清明三候虹始見",
+    "name": "清明三候虹始見",
+    "title": "清明三候虹始見",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%B8%85%E6%98%8E%E4%B8%89%E5%80%99%E8%99%B9%E5%A7%8B%E8%A6%8B%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_清明二候田鼠化為鴽",
+    "name": "清明二候田鼠化為鴽",
+    "title": "清明二候田鼠化為鴽",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E6%B8%85%E6%98%8E%E4%BA%8C%E5%80%99%E7%94%B0%E9%BC%A0%E5%8C%96%E7%82%BA%E9%B4%BD%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_白露一候鴻雁來",
+    "name": "白露一候鴻雁來",
+    "title": "白露一候鴻雁來",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%99%BD%E9%9C%B2%E4%B8%80%E5%80%99%E9%B4%BB%E9%9B%81%E4%BE%86%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_白露三候群鳥養羞",
+    "name": "白露三候群鳥養羞",
+    "title": "白露三候群鳥養羞",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%99%BD%E9%9C%B2%E4%B8%89%E5%80%99%E7%BE%A4%E9%B3%A5%E9%A4%8A%E7%BE%9E%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_白露二候玄鳥歸",
+    "name": "白露二候玄鳥歸",
+    "title": "白露二候玄鳥歸",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%99%BD%E9%9C%B2%E4%BA%8C%E5%80%99%E7%8E%84%E9%B3%A5%E6%AD%B8%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_秋分一候雷始收聲",
+    "name": "秋分一候雷始收聲",
+    "title": "秋分一候雷始收聲",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A7%8B%E5%88%86%E4%B8%80%E5%80%99%E9%9B%B7%E5%A7%8B%E6%94%B6%E8%81%B2%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_秋分三候水始涸",
+    "name": "秋分三候水始涸",
+    "title": "秋分三候水始涸",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A7%8B%E5%88%86%E4%B8%89%E5%80%99%E6%B0%B4%E5%A7%8B%E6%B6%B8%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_秋分二候蟄蟲坯戶",
+    "name": "秋分二候蟄蟲坯戶",
+    "title": "秋分二候蟄蟲坯戶",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A7%8B%E5%88%86%E4%BA%8C%E5%80%99%E8%9F%84%E8%9F%B2%E5%9D%AF%E6%88%B6%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_穀雨一候萍始生",
+    "name": "穀雨一候萍始生",
+    "title": "穀雨一候萍始生",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A9%80%E9%9B%A8%E4%B8%80%E5%80%99%E8%90%8D%E5%A7%8B%E7%94%9F%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_穀雨三候戴勝降于桑",
+    "name": "穀雨三候戴勝降于桑",
+    "title": "穀雨三候戴勝降于桑",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A9%80%E9%9B%A8%E4%B8%89%E5%80%99%E6%88%B4%E5%8B%9D%E9%99%8D%E4%BA%8E%E6%A1%91%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_穀雨二候鳴鳩拂其羽",
+    "name": "穀雨二候鳴鳩拂其羽",
+    "title": "穀雨二候鳴鳩拂其羽",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%A9%80%E9%9B%A8%E4%BA%8C%E5%80%99%E9%B3%B4%E9%B3%A9%E6%8B%82%E5%85%B6%E7%BE%BD%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立冬一候水始冰",
+    "name": "立冬一候水始冰",
+    "title": "立冬一候水始冰",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%86%AC%E4%B8%80%E5%80%99%E6%B0%B4%E5%A7%8B%E5%86%B0%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立冬三候雉入大水為蜃",
+    "name": "立冬三候雉入大水為蜃",
+    "title": "立冬三候雉入大水為蜃",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%86%AC%E4%B8%89%E5%80%99%E9%9B%89%E5%85%A5%E5%A4%A7%E6%B0%B4%E7%82%BA%E8%9C%83%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立冬二候地始凍",
+    "name": "立冬二候地始凍",
+    "title": "立冬二候地始凍",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%86%AC%E4%BA%8C%E5%80%99%E5%9C%B0%E5%A7%8B%E5%87%8D%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立夏一候螻蟈鳴",
+    "name": "立夏一候螻蟈鳴",
+    "title": "立夏一候螻蟈鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%A4%8F%E4%B8%80%E5%80%99%E8%9E%BB%E8%9F%88%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立夏三候王瓜生",
+    "name": "立夏三候王瓜生",
+    "title": "立夏三候王瓜生",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%A4%8F%E4%B8%89%E5%80%99%E7%8E%8B%E7%93%9C%E7%94%9F%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立夏二候蚯蚓出",
+    "name": "立夏二候蚯蚓出",
+    "title": "立夏二候蚯蚓出",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E5%A4%8F%E4%BA%8C%E5%80%99%E8%9A%AF%E8%9A%93%E5%87%BA%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立春一候東風解凍",
+    "name": "立春一候東風解凍",
+    "title": "立春一候東風解凍",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E6%98%A5%E4%B8%80%E5%80%99%E6%9D%B1%E9%A2%A8%E8%A7%A3%E5%87%8D%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立春三候魚陟負冰",
+    "name": "立春三候魚陟負冰",
+    "title": "立春三候魚陟負冰",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E6%98%A5%E4%B8%89%E5%80%99%E9%AD%9A%E9%99%9F%E8%B2%A0%E5%86%B0%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立春二候蟄蟲始振",
+    "name": "立春二候蟄蟲始振",
+    "title": "立春二候蟄蟲始振",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E6%98%A5%E4%BA%8C%E5%80%99%E8%9F%84%E8%9F%B2%E5%A7%8B%E6%8C%AF%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立秋一候涼風至",
+    "name": "立秋一候涼風至",
+    "title": "立秋一候涼風至",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E7%A7%8B%E4%B8%80%E5%80%99%E6%B6%BC%E9%A2%A8%E8%87%B3%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立秋三候寒蟬鳴",
+    "name": "立秋三候寒蟬鳴",
+    "title": "立秋三候寒蟬鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E7%A7%8B%E4%B8%89%E5%80%99%E5%AF%92%E8%9F%AC%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_立秋二候白露降",
+    "name": "立秋二候白露降",
+    "title": "立秋二候白露降",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E7%AB%8B%E7%A7%8B%E4%BA%8C%E5%80%99%E7%99%BD%E9%9C%B2%E9%99%8D%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_芒種一候螳螂生",
+    "name": "芒種一候螳螂生",
+    "title": "芒種一候螳螂生",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%8A%92%E7%A8%AE%E4%B8%80%E5%80%99%E8%9E%B3%E8%9E%82%E7%94%9F%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_芒種三候反舌無聲",
+    "name": "芒種三候反舌無聲",
+    "title": "芒種三候反舌無聲",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%8A%92%E7%A8%AE%E4%B8%89%E5%80%99%E5%8F%8D%E8%88%8C%E7%84%A1%E8%81%B2%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_芒種二候鵙始鳴",
+    "name": "芒種二候鵙始鳴",
+    "title": "芒種二候鵙始鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%8A%92%E7%A8%AE%E4%BA%8C%E5%80%99%E9%B5%99%E5%A7%8B%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_處暑一候鷹乃祭鳥",
+    "name": "處暑一候鷹乃祭鳥",
+    "title": "處暑一候鷹乃祭鳥",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%99%95%E6%9A%91%E4%B8%80%E5%80%99%E9%B7%B9%E4%B9%83%E7%A5%AD%E9%B3%A5%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_處暑三候禾乃登",
+    "name": "處暑三候禾乃登",
+    "title": "處暑三候禾乃登",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%99%95%E6%9A%91%E4%B8%89%E5%80%99%E7%A6%BE%E4%B9%83%E7%99%BB%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_處暑二候天地始肅",
+    "name": "處暑二候天地始肅",
+    "title": "處暑二候天地始肅",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E8%99%95%E6%9A%91%E4%BA%8C%E5%80%99%E5%A4%A9%E5%9C%B0%E5%A7%8B%E8%82%85%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_雨水一候獺祭魚",
+    "name": "雨水一候獺祭魚",
+    "title": "雨水一候獺祭魚",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9B%A8%E6%B0%B4%E4%B8%80%E5%80%99%E7%8D%BA%E7%A5%AD%E9%AD%9A%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_雨水三候草木萌動",
+    "name": "雨水三候草木萌動",
+    "title": "雨水三候草木萌動",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9B%A8%E6%B0%B4%E4%B8%89%E5%80%99%E8%8D%89%E6%9C%A8%E8%90%8C%E5%8B%95%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_雨水二候鴻雁來",
+    "name": "雨水二候鴻雁來",
+    "title": "雨水二候鴻雁來",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9B%A8%E6%B0%B4%E4%BA%8C%E5%80%99%E9%B4%BB%E9%9B%81%E4%BE%86%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_霜降一候豺乃祭獸",
+    "name": "霜降一候豺乃祭獸",
+    "title": "霜降一候豺乃祭獸",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9C%9C%E9%99%8D%E4%B8%80%E5%80%99%E8%B1%BA%E4%B9%83%E7%A5%AD%E7%8D%B8%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_霜降三候蟄蟲咸俯",
+    "name": "霜降三候蟄蟲咸俯",
+    "title": "霜降三候蟄蟲咸俯",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9C%9C%E9%99%8D%E4%B8%89%E5%80%99%E8%9F%84%E8%9F%B2%E5%92%B8%E4%BF%AF%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_霜降二候草木黃落",
+    "name": "霜降二候草木黃落",
+    "title": "霜降二候草木黃落",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%9C%9C%E9%99%8D%E4%BA%8C%E5%80%99%E8%8D%89%E6%9C%A8%E9%BB%83%E8%90%BD%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_驚蟄一候桃始華",
+    "name": "驚蟄一候桃始華",
+    "title": "驚蟄一候桃始華",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%A9%9A%E8%9F%84%E4%B8%80%E5%80%99%E6%A1%83%E5%A7%8B%E8%8F%AF%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_驚蟄三候鷹化為鳩",
+    "name": "驚蟄三候鷹化為鳩",
+    "title": "驚蟄三候鷹化為鳩",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%A9%9A%E8%9F%84%E4%B8%89%E5%80%99%E9%B7%B9%E5%8C%96%E7%82%BA%E9%B3%A9%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  },
+  {
+    "id": "local_驚蟄二候倉庚鳴",
+    "name": "驚蟄二候倉庚鳴",
+    "title": "驚蟄二候倉庚鳴",
+    "desc": "節氣與物候",
+    "tags": [
+      "節氣"
+    ],
+    "image": "/Solar%20card/%E9%A9%9A%E8%9F%84%E4%BA%8C%E5%80%99%E5%80%89%E5%BA%9A%E9%B3%B4%20(1).png",
+    "poem": "順應天時",
+    "category": "歲時"
+  }
+]
