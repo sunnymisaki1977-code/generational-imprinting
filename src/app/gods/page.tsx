@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import Navbar from "@/components/layout/Navbar";
 import WikiSection from "@/components/sections/WikiSection";
 
