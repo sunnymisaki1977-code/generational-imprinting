@@ -1,4 +1,4 @@
-﻿export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import WikiSection from "@/components/sections/WikiSection";
@@ -7,39 +7,40 @@ import CalendarSection from "@/components/sections/CalendarSection";
 import LiteratureSection from "@/components/sections/LiteratureSection";
 import MapSection from "@/components/sections/MapSection";
 
-export const revalidate = false; // 瘞訾?銝???
+export const revalidate = false; // 永久不自動更新
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start bg-xuan text-bone selection:bg-amber selection:text-xuan">
       <Navbar />
       
       <div className="w-full">
-        {/* ?琿??餅?鞊?*/}
+        {/* 卷首・映象 */}
         <section id="hero">
           <HeroSection />
         </section>
 
-        {/* 隢貊??餌???*/}
+        {/* 諸神・紀略 */}
         <section id="wiki">
           <WikiSection />
         </section>
 
-        {/* 甇脫??餌???*/}
+        {/* 歲時・紀曆 */}
         <section id="calendar">
           <CalendarSection />
         </section>
 
-        {/* 隤芣?餃蔣??*/}
+        {/* 說書・影音 */}
         <section id="story">
           <StorySection />
         </section>
 
-        {/* ?? */}
+        {/* 研考・文獻 */}
         <section id="literature">
           <LiteratureSection />
         </section>
 
-        {/* 撠馱?餃??*/}
+        {/* 尋蹤・地圖 */}
         <section id="map">
           <MapSection />
         </section>
@@ -47,4 +48,3 @@ export default function Home() {
     </main>
   );
 }
-
