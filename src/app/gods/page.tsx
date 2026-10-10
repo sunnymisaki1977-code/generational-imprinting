@@ -1,11 +1,12 @@
+﻿export const dynamic = 'force-dynamic';
 import Navbar from "@/components/layout/Navbar";
 import WikiSection from "@/components/sections/WikiSection";
 
 export const revalidate = false;
 
 export const metadata = {
-  title: "諸神・紀略 | 世代銘印",
-  description: "收錄臺灣世代信仰神仙列傳，應用儒、釋、道三教分類與主題標籤進行探索與研考。",
+  title: "隢貊??餌???| 銝誨?",
+  description: "?園??箇銝誨靽∩趕蟡??嚗??典?????銝????蜓憿?蝐日脰??Ｙ揣????,
 };
 
 export default function GodsPage() {
@@ -20,3 +21,4 @@ export default function GodsPage() {
     </main>
   );
 }
+

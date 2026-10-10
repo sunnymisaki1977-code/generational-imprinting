@@ -1,17 +1,17 @@
+﻿export const dynamic = 'force-dynamic';
 import { getYoutubeVideos } from "@/lib/youtube";
 import VideoClient from "./VideoClient";
 
 export const metadata = {
-  title: "說書影音劇院 | 世代銘印",
+  title: "隤芣敶梢? | 銝誨?",
 };
 
 export const revalidate = false;
 
 export default async function VideoPage() {
-  // 抓取兩個不同的播放清單
+  // ???拙????剜皜
   const [adultVideos, kidsVideos] = await Promise.all([
-    getYoutubeVideos("PLAvQkft9FbPU"), // 大人版
-    getYoutubeVideos("PLBzrfvnms1-o")  // 小朋友版
+    getYoutubeVideos("PLAvQkft9FbPU"), // 憭找犖??    getYoutubeVideos("PLBzrfvnms1-o")  // 撠???
   ]);
 
   return (
@@ -21,3 +21,4 @@ export default async function VideoPage() {
     </main>
   );
 }
+
