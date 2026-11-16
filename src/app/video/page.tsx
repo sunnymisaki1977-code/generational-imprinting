@@ -5,7 +5,8 @@ export const metadata = {
   title: "說書影音劇院 | 世代銘印",
 };
 
-export const revalidate = false;
+// 每 5 分鐘重新驗證 YouTube 清單快取，確保頻道新上架影片能自動同步
+export const revalidate = 300;
 
 export default async function VideoPage() {
   // 抓取兩個不同的播放清單
